@@ -172,3 +172,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# ignore pyworld code. NOTE: That could change
+pyworld2
+pyworld3
+
+# ignore working files
+modified_functions_table_world3.json
