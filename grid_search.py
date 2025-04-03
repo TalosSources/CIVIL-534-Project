@@ -5,32 +5,71 @@ Optimizes a specific set of policy choices in order to achieve sustainable devel
 import numpy as np
 import itertools
 import json
+import time
 
 from pyworld3.pyworld3 import World3
+
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
 
 
 # evaluation_function evaluates a simulated World3 instance,
 # according to some definition of sustainable development.
 def evaluation_function(world3):
-    population = np.mean(world3.pop)
-    nrfr = np.mean(world3.nrfr)
-    iopc = np.mean(world3.iopc)
-    ppolx = np.mean(world3.ppolx)
-    fpc = np.mean(world3.fpc)
+    population = np.mean(world3.pop)  # population
+    nrfr_final = world3.nrfr[-1]  # should be equal to the min
+    iopc = np.mean(world3.iopc)  # industrial output per capita
+    ppolx = np.mean(world3.ppolx)  # persistent pollution
+    fpc = np.mean(world3.fpc)  # food per capita
 
-    pop_n = (population - np.min(world3.pop)) / (
-        np.max(world3.pop) - np.min(world3.pop)
-    )  # min-max standardisation
-    ppolx_n = (ppolx - np.min(world3.ppolx)) / (
-        np.max(world3.ppolx) - np.min(world3.ppolx)
-    )
-    nrfr_n = (nrfr - np.min(world3.nrfr)) / (np.max(world3.nrfr) - np.min(world3.nrfr))
-    iopc_n = (iopc - np.min(world3.iopc)) / (np.max(world3.iopc) - np.min(world3.iopc))
-    fpc_n = (fpc - np.min(world3.fpc)) / (np.max(world3.fpc) - np.min(world3.fpc))
+    # print(
+    #     f"obtained population={population}, nrfr_final={nrfr_final}, iopc={iopc}, ppolx={ppolx}, fpc={fpc}"
+    # )
+
+    ## We define sustainable development according to those principles:
+    # Population: stable, and above a minimum threshold
+    # nrfr: as close as possible to initial value
+    # iopc: either maximised, or above some threshold
+    # ppolx: below some threshold
+    # fpc: above some threshold? maximised?
+    #
+    # We map to numbers between 0-1, that we then multiply. A final score of 1 is best, 0 is worst.
+    desired_population = 2e9  # slightly more than the value at the start of the simulation -> no population degrowth
+    pop_std = 2e8
+    pop_factor = sigmoid((population - desired_population) / pop_std)
+    # nrfr can be used as is: 1 means best case, 0 means worst case, and it is linearly impacting the score
+    nrfr_factor = nrfr_final
+
+    desired_iopc = 400  # let's just use the default desired values in the 1970s
+    iopc_std = 50
+    iopc_factor = sigmoid((iopc - desired_iopc) / iopc_std)
+
+    # ppolx is the ratio of the level of pollution w.r.t. what it was in 1970.
+    # hence, we want it to be minimized, but not linearly
+    # (if it's small, dividing it by 10 doesn't compensate for dividing iopc by 10 for example)
+    desired_ppolx = 0.5  # we aim for half as much pollution as there was in 1970
+    ppolx_std = 0.2
+    ppolx_factor = 1 - sigmoid(
+        (ppolx - desired_ppolx) / ppolx_std
+    )  # inverted sigmoid: minimize ppolx
+
+    desired_fpc = world3.sfpc * 1.5  # 150% of the subsistance amount
+    fpc_std = (
+        world3.sfpc / 8
+    )  # relatively small std: having less than sfpc should be very bad, while having significantly more shouldn't be much better than having the desired amount
+    fpc_factor = sigmoid((fpc - desired_fpc) / fpc_std)
+
+    # w = (pop_n + ppolx_n + nrfr_n + iopc_n + fpc_n) / 6
+    # ql = w * (pop_n + ppolx_n + nrfr_n + iopc_n + fpc_n)  # Quality of life
+
+    # print(
+    #    f"  yielding pop_factor={pop_factor}, nrfr_factor={nrfr_factor}, iopc_factor={iopc_factor}, ppolx_factor={ppolx_factor}, fpc_factor={fpc_factor}"
+    # )
 
     # Assuming same weight
-    w = (pop_n + ppolx_n + nrfr_n + iopc_n + fpc_n) / 6
-    ql = w * (pop_n + ppolx_n + nrfr_n + iopc_n + fpc_n)  # Quality of life
+    ql = pop_factor * nrfr_factor * iopc_factor * ppolx_factor * fpc_factor
+    # print(f"result ql: {ql}\n")
 
     return ql
 
@@ -39,22 +78,53 @@ def grid_search():
     modified_json_path = "modified_functions_table_world3.json"
 
     parameters_ranges = [
-        np.arange(1, 3, 1),  # pyear, when we implement the 1-2 policies
-        np.arange(1, 3, 1),  # imti
-        np.arange(1, 2, 1),  # iopcd
-        np.arange(1, 2, 1),  # alai_2
-        np.arange(1, 2, 1),  # fsafc scaling factor
-        np.arange(1, 2, 1),  # hsapc scaling factor
+        # np.arange(1970, 2050, 20),  # pyear, when we implement the 1-2 policies
+        np.array([1975]),  # only a single year: shorten computations
+        #
+        # np.arange(2, 16, 4),  # imti
+        np.array([2, 6]),  # imti 2nd range
+        # np.arange(10, 11),  # imti default
+        #
+        # np.arange(100, 600, 150),  # iopcd
+        np.arange(60, 200, 40),  # iopcd 2nd range
+        # np.arange(400, 401),  # iopdc default
+        #
+        # np.array([1, 2, 4, 8]),  # alai2
+        np.array([1, 2]),  # alai2 second range
+        # np.array([2]),  # alai2 default
+        #
+        # np.array([0.5, 1.0, 2.0, 4.0, 8.0]),  # fsafc scaling factor
+        # np.array([4.0, 8.0, 16.0, 64.0]),  # fsafc scaling factor second range
+        np.array([64.0]),  # fsafc scaling factor second range
+        # np.array([1.0]),  # fsafc scaling factor default
+        #
+        # np.array([0.25, 0.5, 1.0, 2.0, 4.0]),  # hsapc scaling factor
+        # np.array([0.1, 0.20, 0.25, 0.5]),  # hsapc scaling factor second range
+        np.array([0.1]),  # hsapc scaling factor second range
+        # np.array([1.0]),  # hsapc scaling factor default
     ]
 
-    fsafc_default_values = np.array([0, 0.005, 0.015, 0.025, 0.03, 0.035], dtype=int)
-    hsapc_default_values = np.array([0, 20, 50, 95, 140, 175, 200, 220, 230], dtype=int)
+    print(f"searching ranges: {parameters_ranges}")
+    total_steps = 1
+    for r in parameters_ranges:
+        total_steps *= r.shape[0]
+    print(f"total_steps: {total_steps}")
+
+    fsafc_default_values = np.array([0, 0.005, 0.015, 0.025, 0.03, 0.035], dtype=float)
+    hsapc_default_values = np.array(
+        [0, 20, 50, 95, 140, 175, 200, 220, 230], dtype=float
+    )
 
     best_param_set = None
     best_metric = -np.inf
 
+    t1 = None
+
     for param_set in itertools.product(*parameters_ranges):
-        print(f"param_set={param_set}")
+        if t1 is None:
+            t0 = time.time()
+
+        # print(f"considering param_set={param_set}")
 
         # open the file
         with open(modified_json_path, "r") as file:
@@ -72,7 +142,7 @@ def grid_search():
         # define a world simulation with this parameter_set
         world3 = World3(pyear=param_set[0])  # choose the time limits and step.
         world3.init_world3_constants(
-            imti=param_set[1], iopcd=param_set[2], alai2=param_set[3]
+            imti=param_set[1], iopcd=param_set[2], alai2=param_set[3], iet=2000
         )  # choose the model constants.
         world3.init_world3_variables()  # initialize all variables.
         world3.set_world3_table_functions(
@@ -84,11 +154,23 @@ def grid_search():
         world3.run_world3()
 
         # evaluate the run according to our notion of sustainable development
-        eval_metric = world3.pop[-1]  # TODO: Replace with actual metric
+        eval_metric = evaluation_function(world3)
 
         if eval_metric > best_metric:
             best_param_set = param_set
             best_metric = eval_metric
+            print(
+                f"Found new best param set: {best_param_set}\n    New best metric: {best_metric}"
+            )
+
+        if t1 is None:
+            t1 = time.time()
+            delta_time = t1 - t0
+            print(f"Iteration time: {delta_time}")
+            second_estimation = delta_time * total_steps
+            print(
+                f"Total estimation: {second_estimation}[s], or {second_estimation / 60} mins."
+            )
 
     # report results (plot, table, ...)
     print(f"Best metric: {best_metric}.\nBest param_set: {best_param_set}\n")

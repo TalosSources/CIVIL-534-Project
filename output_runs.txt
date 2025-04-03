@@ -1,0 +1,49 @@
+============================================DEFAULT=RUN============================================
+searching ranges: [array([1975]), array([10]), array([400]), array([2]), array([1.]), array([1.])]
+total_steps: 1
+obtained population=4423250480.551753, nrfr_final=0.13050605112058344, iopc=160.25294579469983, ppolx=3.2468184796956296, fpc=354.7131340004756
+Found new best param set: (np.int64(1975), np.int64(10), np.int64(400), np.int64(2), np.float64(1.0), np.float64(1.0))
+    New best metric: 6.778896327941068e-10
+Iteration time: 1.1933987140655518
+Total estimation: 1.1933987140655518[s], or 0.019889978567759196 mins.
+Best metric: 6.778896327941068e-10.
+Best param_set: (np.int64(1975), np.int64(10), np.int64(400), np.int64(2), np.float64(1.0), np.float64(1.0))
+
+==========================================GRID=SEARCH=RUN==========================================
+(using standard ranges)
+Best metric: 0.0006996667555238805.
+Best param_set: (np.int64(1975), np.int64(2), np.int64(100), np.int64(1), np.float64(8.0), np.float64(0.25))
+
+
+
+==========================================GRID=SEARCH=SECOND=RUN==========================================
+searching ranges: [array([1975]), array([2, 6]), array([ 20,  60, 100, 140]), array([1, 2]), array([ 4.,  8., 16., 64.]), array([0.1 , 0.2 , 0.25, 0.5 ])]
+total_steps: 256
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(20), np.int64(1), np.float64(4.0), np.float64(0.1))
+    New best metric: 0.000755727248651467
+Iteration time: 1.220574140548706
+Total estimation: 312.46697998046875[s], or 5.207782999674479 mins.
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(20), np.int64(1), np.float64(8.0), np.float64(0.1))
+    New best metric: 0.0008031453175250759
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(20), np.int64(1), np.float64(16.0), np.float64(0.1))
+    New best metric: 0.0008308841513709627
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(20), np.int64(1), np.float64(64.0), np.float64(0.1))
+    New best metric: 0.0008461432408111699
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(60), np.int64(1), np.float64(8.0), np.float64(0.1))
+    New best metric: 0.0008842443705027756
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(60), np.int64(1), np.float64(16.0), np.float64(0.1))
+    New best metric: 0.0009133679279146421
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(60), np.int64(1), np.float64(64.0), np.float64(0.1))
+    New best metric: 0.0009282855400613397
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(100), np.int64(1), np.float64(8.0), np.float64(0.1))
+    New best metric: 0.0009918943016348158
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(100), np.int64(1), np.float64(16.0), np.float64(0.1))
+    New best metric: 0.0010162484199720263
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(100), np.int64(1), np.float64(64.0), np.float64(0.1))
+    New best metric: 0.0010256945575199939
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(140), np.int64(1), np.float64(16.0), np.float64(0.1))
+    New best metric: 0.0010927144998628033
+Found new best param set: (np.int64(1975), np.int64(2), np.int64(140), np.int64(1), np.float64(64.0), np.float64(0.1))
+    New best metric: 0.001147545439388817
+Best metric: 0.001147545439388817.
+Best param_set: (np.int64(1975), np.int64(2), np.int64(140), np.int64(1), np.float64(64.0), np.float64(0.1))
