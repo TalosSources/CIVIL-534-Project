@@ -1,0 +1,4992 @@
+{
+    "absorption_land_gha": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "persistent_pollution_generation_rate",
+            "ha_per_unit_of_pollution",
+            "ha_per_gha"
+        ],
+        "description": null,
+        "in72": null,
+        "name": "\"Absorption Land (GHA)\"",
+        "type": "component",
+        "value": null
+    },
+    "agricultural_input_per_hectare": {
+        "abbr": "AIPH",
+        "code": "101",
+        "dependencies": [
+            "fraction_of_agricultural_inputs_for_land_maintenance",
+            "agricultural_inputs",
+            "arable_land"
+        ],
+        "description": "AGRICULTURAL INPUTS PER HECTARE (AIPH#101)",
+        "in72": null,
+        "name": "agricultural input per hectare",
+        "type": "component",
+        "value": null
+    },
+    "agricultural_inputs": {
+        "abbr": "AI",
+        "code": "99",
+        "dependencies": [
+            "average_life_agricultural_inputs",
+            "current_agricultural_inputs"
+        ],
+        "description": "AGRICULTURAL INPUTS (AI#99)",
+        "in72": "state",
+        "name": "Agricultural Inputs",
+        "stateful_func": "smooth_current_agricultural_inputs_average_life_agricultural_inputs_current_agricultural_inputs_1",
+        "type": "stateful",
+        "value": null
+    },
+    "agricultural_material_toxicity_index": {
+        "abbr": "AMTI",
+        "code": "140.2",
+        "dependencies": null,
+        "description": "Agricultural material toxicity index (AMTI#140.2).",
+        "in72": "parameter",
+        "name": "agricultural material toxicity index",
+        "type": "constant",
+        "value": 1
+    },
+    "air_pollution_policy_implementation_time": {
+        "abbr": "ARPTM",
+        "code": "--",
+        "dependencies": null,
+        "description": "Air Pollution switch time (ARPTM#--)",
+        "in72": null,
+        "name": "air pollution policy implementation time",
+        "type": "constant",
+        "value": 4000
+    },
+    "arable_land": {
+        "abbr": "AL",
+        "code": "85",
+        "dependencies": [
+            "land_development_rate",
+            "land_removal_for_urban_and_industrial_use",
+            "initial_arable_land",
+            "land_erosion_rate"
+        ],
+        "description": "Arable land (AL#85).",
+        "in72": "state",
+        "name": "Arable Land",
+        "stateful_func": "integ_arable_land",
+        "type": "stateful",
+        "value": null
+    },
+    "arable_land_in_gigahectares_gha": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "arable_land",
+            "ha_per_gha"
+        ],
+        "description": null,
+        "in72": null,
+        "name": "\"Arable Land in Gigahectares (GHA)\"",
+        "type": "component",
+        "value": null
+    },
+    "assimilation_half_life": {
+        "abbr": "AHL",
+        "code": "146",
+        "dependencies": [
+            "assimilation_half_life_in_1970",
+            "assimilation_half_life_multiplier"
+        ],
+        "description": "ASSIMILATION HALF-LIFE (AHL#146).",
+        "in72": "parameter",
+        "name": "assimilation half life",
+        "type": "component",
+        "value": null
+    },
+    "assimilation_half_life_in_1970": {
+        "abbr": "AHL70",
+        "code": "146.1",
+        "dependencies": null,
+        "description": "Assimilation half life of persistent pollution int 1970 (AHL70#146.1).",
+        "in72": null,
+        "name": "assimilation half life in 1970",
+        "type": "constant",
+        "value": 1.5
+    },
+    "assimilation_half_life_mult_table": {
+        "abbr": "AHLMT",
+        "code": "145.1",
+        "dependencies": null,
+        "description": "Table relating the level of persisten pollution to its assimilation rate (AHLMT#145.1).",
+        "in72": null,
+        "name": "assimilation half life mult table",
+        "type": "lookup",
+        "value": [
+            [
+                1,
+                251,
+                501,
+                751,
+                1001
+            ],
+            [
+                1,
+                11,
+                21,
+                31,
+                41
+            ]
+        ]
+    },
+    "assimilation_half_life_multiplier": {
+        "abbr": "AHLM",
+        "code": "145",
+        "dependencies": [
+            "assimilation_half_life_mult_table",
+            "persistent_pollution_index"
+        ],
+        "description": "Assimilation half life of multiplier of persistent pollution (AHLM#145)",
+        "in72": "table",
+        "name": "assimilation half life multiplier",
+        "type": "component",
+        "value": null
+    },
+    "average_industrial_output_per_capita": {
+        "abbr": "AIOPC",
+        "code": "43",
+        "dependencies": [
+            "income_expectation_averaging_time",
+            "industrial_output_per_capita"
+        ],
+        "description": "Average industrial output per capita (AIOPC#43).",
+        "in72": "state",
+        "name": "average industrial output per capita",
+        "stateful_func": "smooth_industrial_output_per_capita_income_expectation_averaging_time_industrial_output_per_capita_1",
+        "type": "stateful",
+        "value": null
+    },
+    "average_life_agricultural_inputs": {
+        "abbr": "ALAI",
+        "code": "100",
+        "dependencies": [
+            "policy_year",
+            "time",
+            "average_life_of_agricultural_inputs_1",
+            "average_life_of_agricultural_inputs_2"
+        ],
+        "description": "AVERAGE LIFETIME OF AGRICULTURAL INPUTS (ALAI#100)",
+        "in72": "parameter",
+        "name": "average life agricultural inputs",
+        "type": "component",
+        "value": null
+    },
+    "average_life_of_agricultural_inputs_1": {
+        "abbr": "ALAI1",
+        "code": "100.1",
+        "dependencies": null,
+        "description": "The average life of agricultural inputs before policy time (ALAI1#100.1)",
+        "in72": null,
+        "name": "average life of agricultural inputs 1",
+        "type": "constant",
+        "value": 2
+    },
+    "average_life_of_agricultural_inputs_2": {
+        "abbr": "ALAI2",
+        "code": "100.2",
+        "dependencies": null,
+        "description": "The average life of agricultural inputs after policy time (ALAI2#100.2)",
+        "in72": null,
+        "name": "average life of agricultural inputs 2",
+        "type": "constant",
+        "value": 2
+    },
+    "average_life_of_industrial_capital": {
+        "abbr": "ALIC",
+        "code": "54",
+        "dependencies": [
+            "policy_year",
+            "average_life_of_industrial_capital_2",
+            "time",
+            "average_life_of_industrial_capital_1"
+        ],
+        "description": "AVERAGE LIFETIME OF INDUSTRIAL CAPITAL (ALIC#54).",
+        "in72": null,
+        "name": "average life of industrial capital",
+        "type": "component",
+        "value": null
+    },
+    "average_life_of_industrial_capital_1": {
+        "abbr": "ALIC1",
+        "code": "54.1",
+        "dependencies": null,
+        "description": "Average life of industrial capital before policy year (ALIC1#54.1).",
+        "in72": null,
+        "name": "average life of industrial capital 1",
+        "type": "constant",
+        "value": 14
+    },
+    "average_life_of_industrial_capital_2": {
+        "abbr": "ALIC2",
+        "code": "54.2",
+        "dependencies": null,
+        "description": "Average life of industrial capital after policy year (ALIC2#54.2)",
+        "in72": null,
+        "name": "average life of industrial capital 2",
+        "type": "constant",
+        "value": 14
+    },
+    "average_life_of_land": {
+        "abbr": "ALL",
+        "code": "112",
+        "dependencies": [
+            "land_life_multiplier_from_land_yield",
+            "average_life_of_land_normal"
+        ],
+        "description": "Average life of land (ALL#112).",
+        "in72": null,
+        "name": "average life of land",
+        "type": "component",
+        "value": null
+    },
+    "average_life_of_land_normal": {
+        "abbr": "ALLN",
+        "code": "112.1",
+        "dependencies": null,
+        "description": "AVERAGE LIFE OF LAND NORMAL (ALLN#112.1).",
+        "in72": "parameter",
+        "name": "average life of land normal",
+        "type": "constant",
+        "value": 1000
+    },
+    "average_life_of_service_capital": {
+        "abbr": "ALSC",
+        "code": "69",
+        "dependencies": [
+            "average_life_of_service_capital_2",
+            "time",
+            "policy_year",
+            "average_life_of_service_capital_1"
+        ],
+        "description": "AVERAGE LIFETIME OF SERVICE CAPITAL (ALSC#69)",
+        "in72": "parameter",
+        "name": "average life of service capital",
+        "type": "component",
+        "value": null
+    },
+    "average_life_of_service_capital_1": {
+        "abbr": "ALSC1",
+        "code": "69.1",
+        "dependencies": null,
+        "description": "Average lifetime of service capital before policy time (ALSC1#69.1).",
+        "in72": null,
+        "name": "average life of service capital 1",
+        "type": "constant",
+        "value": 20
+    },
+    "average_life_of_service_capital_2": {
+        "abbr": "ALSC2",
+        "code": "69.2",
+        "dependencies": null,
+        "description": "Average lifetime of service capital after policy time (ALSC2#69.2).",
+        "in72": null,
+        "name": "average life of service capital 2",
+        "type": "constant",
+        "value": 20
+    },
+    "birth_rate": {
+        "abbr": "CBR",
+        "code": "31",
+        "dependencies": [
+            "thousand",
+            "births",
+            "population"
+        ],
+        "description": "The crude birth rate measured in people per thousand people per year (CBR#31).",
+        "in72": null,
+        "name": "birth rate",
+        "type": "component",
+        "value": null
+    },
+    "births": {
+        "abbr": "B",
+        "code": "30",
+        "dependencies": [
+            "deaths",
+            "population_equilibrium_time",
+            "time",
+            "total_fertility",
+            "reproductive_lifetime",
+            "population_15_to_44"
+        ],
+        "description": "The total number of births in the world (B#30).",
+        "in72": null,
+        "name": "births",
+        "type": "component",
+        "value": null
+    },
+    "capacity_utilization_fraction": {
+        "abbr": "CUF",
+        "code": "83",
+        "dependencies": [
+            "capacity_utilization_fraction_table",
+            "delayed_labor_utilization_fraction"
+        ],
+        "description": "CAPITAL UTILIZATION FRACTION (CUF#83)",
+        "in72": "table",
+        "name": "capacity utilization fraction",
+        "type": "component",
+        "value": null
+    },
+    "capacity_utilization_fraction_table": {
+        "abbr": "CUFT",
+        "code": "83.2",
+        "dependencies": null,
+        "description": "Table relating labor utilization to capacity utilization (CUFT#83.2).",
+        "in72": null,
+        "name": "capacity utilization fraction table",
+        "type": "lookup",
+        "value": [
+            [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11
+            ],
+            [
+                1,
+                0.9,
+                0.7,
+                0.3,
+                0.1,
+                0.1
+            ]
+        ]
+    },
+    "completed_multiplier_from_perceived_lifetime": {
+        "abbr": "CMPLE",
+        "code": "36",
+        "dependencies": [
+            "perceived_life_expectancy",
+            "one_year",
+            "completed_multiplier_from_perceived_lifetime_table"
+        ],
+        "description": "COMPENSATORY MULTIPLIER FROM PERCEIVED LIFE EXPECTANCY (CMPLE#36).",
+        "in72": "table",
+        "name": "completed multiplier from perceived lifetime",
+        "type": "component",
+        "value": null
+    },
+    "completed_multiplier_from_perceived_lifetime_table": {
+        "abbr": "CMPLET",
+        "code": "36.1",
+        "dependencies": null,
+        "description": "Table relating perceived life expectancy to birth rate compensation (CMPLET#36.1).",
+        "in72": null,
+        "name": "completed multiplier from perceived lifetime table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80
+            ],
+            [
+                3,
+                2.1,
+                1.6,
+                1.4,
+                1.3,
+                1.2,
+                1.1,
+                1.05,
+                1
+            ]
+        ]
+    },
+    "consumed_industrial_output": {
+        "abbr": "CIO",
+        "code": "--",
+        "dependencies": [
+            "fraction_of_industrial_output_allocated_to_consumption",
+            "industrial_output"
+        ],
+        "description": "Consumed industrial output (CIO#--).",
+        "in72": null,
+        "name": "consumed industrial output",
+        "type": "component",
+        "value": null
+    },
+    "consumed_industrial_output_per_capita": {
+        "abbr": "CIOPC",
+        "code": "--",
+        "dependencies": [
+            "consumed_industrial_output",
+            "population"
+        ],
+        "description": "Consumption Industrial Output per Capita (CIOPC#--)",
+        "in72": null,
+        "name": "consumed industrial output per capita",
+        "type": "component",
+        "value": null
+    },
+    "crowding_multiplier_from_industry": {
+        "abbr": "CMI",
+        "code": "27",
+        "dependencies": [
+            "industrial_output_per_capita",
+            "crowding_multiplier_from_industry_table",
+            "gdp_pc_unit"
+        ],
+        "description": "CROWDING MULTIPLIER FROM INDUSTRIALIZATION (CMI#27).",
+        "in72": "table",
+        "name": "crowding multiplier from industry",
+        "type": "component",
+        "value": null
+    },
+    "crowding_multiplier_from_industry_table": {
+        "abbr": "CMIT",
+        "code": "27.1",
+        "dependencies": null,
+        "description": "Table relating industrial output to crowding (CMIT#27.1).",
+        "in72": null,
+        "name": "crowding multiplier from industry table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                200,
+                400,
+                600,
+                800,
+                1000,
+                1200,
+                1400,
+                1600
+            ],
+            [
+                0.5,
+                0.05,
+                0.05,
+                0.1,
+                0.15,
+                0.2
+            ]
+        ]
+    },
+    "current_agricultural_inputs": {
+        "abbr": "CAI",
+        "code": "98",
+        "dependencies": [
+            "fraction_of_agricultural_inputs_allocated_to_land_development",
+            "total_agricultural_investment"
+        ],
+        "description": "CURRENT AGRICULTURAL INPUTS (CAI#98).",
+        "in72": null,
+        "name": "current agricultural inputs",
+        "type": "component",
+        "value": null
+    },
+    "death_rate": {
+        "abbr": "CDR",
+        "code": "18",
+        "dependencies": [
+            "thousand",
+            "deaths",
+            "population"
+        ],
+        "description": "CRUDE DEATH RATE (CDR#18)",
+        "in72": null,
+        "name": "death rate",
+        "type": "component",
+        "value": null
+    },
+    "deaths": {
+        "abbr": "D",
+        "code": "17",
+        "dependencies": [
+            "deaths_0_to_14",
+            "deaths_15_to_44",
+            "deaths_65_plus",
+            "deaths_45_to_64"
+        ],
+        "description": "The total number of deaths per year for all age groups (D#17).",
+        "in72": null,
+        "name": "deaths",
+        "type": "component",
+        "value": null
+    },
+    "deaths_0_to_14": {
+        "abbr": "D1",
+        "code": "3",
+        "dependencies": [
+            "mortality_0_to_14",
+            "population_0_to_14"
+        ],
+        "description": "The number of deaths per year among people 0 to 14 years of age (D1#3).",
+        "in72": null,
+        "name": "deaths 0 to 14",
+        "type": "component",
+        "value": null
+    },
+    "deaths_15_to_44": {
+        "abbr": "D2",
+        "code": "7",
+        "dependencies": [
+            "mortality_15_to_44",
+            "population_15_to_44"
+        ],
+        "description": "The number of deaths per year among people 15 to 44 years of age (D2#7).",
+        "in72": null,
+        "name": "deaths 15 to 44",
+        "type": "component",
+        "value": null
+    },
+    "deaths_45_to_64": {
+        "abbr": "D3",
+        "code": "11",
+        "dependencies": [
+            "population_45_to_64",
+            "mortality_45_to_64"
+        ],
+        "description": "The number of deaths per year among people 55 to 64 years of age (D3#11).",
+        "in72": null,
+        "name": "deaths 45 to 64",
+        "type": "component",
+        "value": null
+    },
+    "deaths_65_plus": {
+        "abbr": "D4",
+        "code": "15",
+        "dependencies": [
+            "population_65_plus",
+            "mortality_65_plus"
+        ],
+        "description": "The number of deaths per year among people 65 and older (D4#15).",
+        "in72": null,
+        "name": "deaths 65 plus",
+        "type": "component",
+        "value": null
+    },
+    "delayed_industrial_output_per_capita": {
+        "abbr": "DIOPC",
+        "code": "40",
+        "dependencies": [
+            "industrial_output_per_capita",
+            "social_adjustment_delay"
+        ],
+        "description": "Delayed industrial output per capita (DIOPC#40).",
+        "in72": "state",
+        "name": "delayed industrial output per capita",
+        "stateful_func": "smooth_industrial_output_per_capita_social_adjustment_delay_industrial_output_per_capita_3",
+        "type": "stateful",
+        "value": null
+    },
+    "delayed_labor_utilization_fraction": {
+        "abbr": "LUFD",
+        "code": "82",
+        "dependencies": [
+            "labor_utilization_fraction_delay_time",
+            "labor_utilization_fraction"
+        ],
+        "description": "LABOR UTILIZATION FRACTION DELAYED (LUFD#82)",
+        "in72": "state",
+        "name": "Delayed Labor Utilization Fraction",
+        "stateful_func": "smooth_labor_utilization_fraction_labor_utilization_fraction_delay_time_10_1",
+        "type": "stateful",
+        "value": null
+    },
+    "desired_completed_family_size": {
+        "abbr": "DCFS",
+        "code": "38",
+        "dependencies": [
+            "zero_population_growth_time",
+            "family_response_to_social_norm",
+            "time",
+            "social_family_size_normal",
+            "desired_completed_family_size_normal"
+        ],
+        "description": "Desired completed family size (DCFS#38)",
+        "in72": null,
+        "name": "desired completed family size",
+        "type": "component",
+        "value": null
+    },
+    "desired_completed_family_size_normal": {
+        "abbr": "DCFSN",
+        "code": "38.2",
+        "dependencies": null,
+        "description": "DESIRED COMPLETED FAMILY SIZE NORMAL (DCFSN#38.2).",
+        "in72": "parameter",
+        "name": "desired completed family size normal",
+        "type": "constant",
+        "value": 3.8
+    },
+    "desired_food_ratio": {
+        "abbr": "DFR",
+        "code": "--",
+        "dependencies": null,
+        "description": "desired food ratio (DFR#--)",
+        "in72": null,
+        "name": "desired food ratio",
+        "type": "constant",
+        "value": 2
+    },
+    "desired_persistent_pollution_index": {
+        "abbr": "DPOLX",
+        "code": "--",
+        "dependencies": null,
+        "description": "Desires persistent pollution index (DPOLX#--).",
+        "in72": null,
+        "name": "desired persistent pollution index",
+        "type": "constant",
+        "value": 1.2
+    },
+    "desired_resource_use_rate": {
+        "abbr": "DNRUR",
+        "code": "--",
+        "dependencies": null,
+        "description": "Desired non-renewable resource usage rate (DNRUR#--)",
+        "in72": null,
+        "name": "desired resource use rate",
+        "type": "constant",
+        "value": 4800000000.0
+    },
+    "desired_total_fertility": {
+        "abbr": "DTF",
+        "code": "35",
+        "dependencies": [
+            "desired_completed_family_size",
+            "completed_multiplier_from_perceived_lifetime"
+        ],
+        "description": "DESIRED TOTAL FERTILITY (DTF#35).",
+        "in72": null,
+        "name": "desired total fertility",
+        "type": "component",
+        "value": null
+    },
+    "development_cost_per_hectare": {
+        "abbr": "DCPH",
+        "code": "97",
+        "dependencies": [
+            "development_cost_per_hectare_table",
+            "potentially_arable_land",
+            "potentially_arable_land_total"
+        ],
+        "description": "Development cost per hectare (DCPH#97).",
+        "in72": "table",
+        "name": "development cost per hectare",
+        "type": "component",
+        "value": null
+    },
+    "development_cost_per_hectare_table": {
+        "abbr": "DCPHT",
+        "code": "97.1",
+        "dependencies": null,
+        "description": "Table relating undeveloped land to the cost of land development (DCPHT#97.1).",
+        "in72": null,
+        "name": "development cost per hectare table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.1,
+                0.2,
+                0.3,
+                0.4,
+                0.5,
+                0.6,
+                0.7,
+                0.8,
+                0.9,
+                1
+            ],
+            [
+                100000,
+                7400,
+                5200,
+                3500,
+                2400,
+                1500,
+                750,
+                300,
+                150,
+                75,
+                50
+            ]
+        ]
+    },
+    "education_index": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "gdp_pc_unit",
+            "gdp_per_capita",
+            "education_index_lookup"
+        ],
+        "description": null,
+        "in72": null,
+        "name": "Education Index",
+        "type": "component",
+        "value": null
+    },
+    "education_index_lookup": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "Education Index LOOKUP",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                1000,
+                2000,
+                3000,
+                4000,
+                5000,
+                6000,
+                7000
+            ],
+            [
+                0,
+                0.81,
+                0.88,
+                0.92,
+                0.95,
+                0.98,
+                0.99,
+                1
+            ]
+        ]
+    },
+    "effective_health_services_per_capita": {
+        "abbr": "EHSPC",
+        "code": "22",
+        "dependencies": [
+            "health_services_impact_delay",
+            "health_services_per_capita"
+        ],
+        "description": "Effective health services per capita - delayed from allocation (EHSPC#22)",
+        "in72": "state",
+        "name": "effective health services per capita",
+        "stateful_func": "smooth_health_services_per_capita_health_services_impact_delay_health_services_per_capita_1",
+        "type": "stateful",
+        "value": null
+    },
+    "family_income_expectation": {
+        "abbr": "FIE",
+        "code": "42",
+        "dependencies": [
+            "industrial_output_per_capita",
+            "average_industrial_output_per_capita"
+        ],
+        "description": "Family income expectations (FIE#42).",
+        "in72": null,
+        "name": "family income expectation",
+        "type": "component",
+        "value": null
+    },
+    "family_response_to_social_norm": {
+        "abbr": "FRSN",
+        "code": "41",
+        "dependencies": [
+            "family_income_expectation",
+            "family_response_to_social_norm_table"
+        ],
+        "description": "FAMILY RESPONSE TO SOCIAL NORM (FRSN#41).",
+        "in72": "table",
+        "name": "family response to social norm",
+        "type": "component",
+        "value": null
+    },
+    "family_response_to_social_norm_table": {
+        "abbr": "FRSNT",
+        "code": "41.1",
+        "dependencies": null,
+        "description": "The table relating income expectations to family size (FRSNT#41.1).",
+        "in72": null,
+        "name": "family response to social norm table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.1,
+                0.2
+            ],
+            [
+                0.5,
+                0.6,
+                0.7,
+                0.85,
+                1
+            ]
+        ]
+    },
+    "fecundity_multiplier": {
+        "abbr": "FM",
+        "code": "34",
+        "dependencies": [
+            "life_expectancy",
+            "one_year",
+            "fecundity_multiplier_table"
+        ],
+        "description": "FECUNDITY MULTIPLIER (FM#34).",
+        "in72": "table",
+        "name": "fecundity multiplier",
+        "type": "component",
+        "value": null
+    },
+    "fecundity_multiplier_table": {
+        "abbr": "FMT",
+        "code": "34.1",
+        "dependencies": null,
+        "description": "Table relating life expectancy to fecundity (FMT#34.1).",
+        "in72": null,
+        "name": "fecundity multiplier table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80
+            ],
+            [
+                0,
+                0.2,
+                0.4,
+                0.6,
+                0.7,
+                0.75,
+                0.79,
+                0.84,
+                0.87
+            ]
+        ]
+    },
+    "fertility_control_allocation_per_capita": {
+        "abbr": "FCAPC",
+        "code": "47",
+        "dependencies": [
+            "service_output_per_capita",
+            "fraction_services_allocated_to_fertility_control"
+        ],
+        "description": "FERTILITY CONTROL ALLOCATIONS PER CAPITA (FCAPC#47).",
+        "in72": null,
+        "name": "fertility control allocation per capita",
+        "type": "component",
+        "value": null
+    },
+    "fertility_control_effectiveness": {
+        "abbr": "FCE",
+        "code": "45",
+        "dependencies": [
+            "fertility_control_effectiveness_table",
+            "gdp_pc_unit",
+            "time",
+            "fertility_control_effectiveness_time",
+            "fertility_control_facilities_per_capita"
+        ],
+        "description": "Fertility control effectiveness (FCE#45).",
+        "in72": "table",
+        "name": "fertility control effectiveness",
+        "type": "component",
+        "value": null
+    },
+    "fertility_control_effectiveness_table": {
+        "abbr": "FCET",
+        "code": "45.2",
+        "dependencies": null,
+        "description": "Fertility control effectiveness table (FCET#45.2).",
+        "in72": null,
+        "name": "fertility control effectiveness table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.5,
+                1,
+                1.5,
+                2,
+                2.5,
+                3
+            ],
+            [
+                0.75,
+                0.85,
+                0.9,
+                0.95,
+                0.98,
+                0.99,
+                1
+            ]
+        ]
+    },
+    "fertility_control_effectiveness_time": {
+        "abbr": "FCEST",
+        "code": "45.1",
+        "dependencies": null,
+        "description": "FERTILITY CONTROL EFFECTIVENESS SET TIME (FCEST#45.1).",
+        "in72": null,
+        "name": "fertility control effectiveness time",
+        "type": "constant",
+        "value": 4000
+    },
+    "fertility_control_facilities_per_capita": {
+        "abbr": "FCFPC",
+        "code": "46",
+        "dependencies": [
+            "health_services_impact_delay",
+            "fertility_control_allocation_per_capita"
+        ],
+        "description": "FERTILITY CONTROL FACILITIES PER CAPITA (FCFPC#46).",
+        "in72": "state",
+        "name": "fertility control facilities per capita",
+        "stateful_func": "smooth_fertility_control_allocation_per_capita_health_services_impact_delay_fertility_control_allocation_per_capita_3",
+        "type": "stateful",
+        "value": null
+    },
+    "final_time": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": "The time at which simulation stops.",
+        "in72": null,
+        "name": "FINAL TIME",
+        "type": "constant",
+        "value": 2100
+    },
+    "food": {
+        "abbr": "F",
+        "code": "87",
+        "dependencies": [
+            "land_yield",
+            "arable_land",
+            "processing_loss",
+            "land_fraction_harvested"
+        ],
+        "description": "The total amount of usable food (F#87).",
+        "in72": null,
+        "name": "food",
+        "type": "component",
+        "value": null
+    },
+    "food_per_capita": {
+        "abbr": "FPC",
+        "code": "88",
+        "dependencies": [
+            "food",
+            "population"
+        ],
+        "description": "Food per capita (FPC#88)",
+        "in72": null,
+        "name": "food per capita",
+        "type": "component",
+        "value": null
+    },
+    "food_ratio": {
+        "abbr": "FR",
+        "code": "127",
+        "dependencies": [
+            "subsistence_food_per_capita",
+            "food_per_capita"
+        ],
+        "description": "FOOD RATIO (FR#127)",
+        "in72": null,
+        "name": "food ratio",
+        "type": "component",
+        "value": null
+    },
+    "food_shortage_perception_delay": {
+        "abbr": "FSPD",
+        "code": "128.2",
+        "dependencies": null,
+        "description": "FOOD SHORTAGE PERCEPTION DELAY (FSPD#128.2)",
+        "in72": "parameter",
+        "name": "food shortage perception delay",
+        "type": "constant",
+        "value": 2
+    },
+    "fraction_industrial_output_allocated_to_agriculture_table_1": {
+        "abbr": "FIOAA1T",
+        "code": "94.1",
+        "dependencies": null,
+        "description": "Table relating food per capita to the fraction of industrial output allocated to agriculture (FIOAA1T#94.1).",
+        "in72": null,
+        "name": "fraction industrial output allocated to agriculture table 1",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.5,
+                1,
+                1.5,
+                2,
+                2.5
+            ],
+            [
+                0.4,
+                0.2,
+                0.1,
+                0.025,
+                0,
+                0
+            ]
+        ]
+    },
+    "fraction_industrial_output_allocated_to_agriculture_table_2": {
+        "abbr": "FIOAA2T",
+        "code": "95.1",
+        "dependencies": null,
+        "description": "Table relating food per capita to the fraction of industrial output allocated to agriculture (FIOAA2T#95.1).",
+        "in72": null,
+        "name": "fraction industrial output allocated to agriculture table 2",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.5,
+                1,
+                1.5,
+                2,
+                2.5
+            ],
+            [
+                0.4,
+                0.2,
+                0.1,
+                0.025,
+                0,
+                0
+            ]
+        ]
+    },
+    "fraction_of_agricultural_inputs_allocated_to_land_development": {
+        "abbr": "FIALD",
+        "code": "108",
+        "dependencies": [
+            "marginal_productivity_of_agricultural_inputs",
+            "marginal_productivity_of_land_development",
+            "fraction_of_agricultural_inputs_allocated_to_land_development_table"
+        ],
+        "description": "Fraction of inputs allocated to land devlelopment (FIALD#108).",
+        "in72": "table",
+        "name": "fraction of agricultural inputs allocated to land development",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_agricultural_inputs_allocated_to_land_development_table": {
+        "abbr": "FIALDT",
+        "code": "108.1",
+        "dependencies": null,
+        "description": "Table relating the marginal productivity of land to the fraction of inputs allocated to new land development (FIALDT#108.1).",
+        "in72": null,
+        "name": "fraction of agricultural inputs allocated to land development table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.25,
+                0.5,
+                0.75,
+                1,
+                1.25,
+                1.5,
+                1.75,
+                2
+            ],
+            [
+                0,
+                0.05,
+                0.15,
+                0.3,
+                0.5,
+                0.7,
+                0.85,
+                0.95,
+                1
+            ]
+        ]
+    },
+    "fraction_of_agricultural_inputs_for_land_maintenance": {
+        "abbr": "FALM",
+        "code": "126",
+        "dependencies": [
+            "perceived_food_ratio",
+            "fraction_of_agricultural_inputs_for_land_maintenance_table"
+        ],
+        "description": "FRACTION OF INPUTS ALLOCATED TO LAND MAINTENANCE (FALM#126).",
+        "in72": "table",
+        "name": "fraction of agricultural inputs for land maintenance",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_agricultural_inputs_for_land_maintenance_table": {
+        "abbr": "FALMT",
+        "code": "126.1",
+        "dependencies": null,
+        "description": "Table relating the perceived food ratio to the fraction of input used for land maintenance (FALMT#126.1).",
+        "in72": null,
+        "name": "fraction of agricultural inputs for land maintenance table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            [
+                0,
+                0.04,
+                0.07,
+                0.09,
+                0.1
+            ]
+        ]
+    },
+    "fraction_of_agricultural_inputs_from_persistent_materials": {
+        "abbr": "FIPM",
+        "code": "140.1",
+        "dependencies": null,
+        "description": "Fraction of inputs as persistent materials (FIPM#140.1).",
+        "in72": "parameter",
+        "name": "fraction of agricultural inputs from persistent materials",
+        "type": "constant",
+        "value": 0.001
+    },
+    "fraction_of_capital_allocated_to_obtaining_resources_1": {
+        "abbr": "FCAOR1",
+        "code": "135",
+        "dependencies": [
+            "fraction_of_capital_allocated_to_obtaining_resources_1_table",
+            "fraction_of_resources_remaining"
+        ],
+        "description": "Fraction of capital allocated to obtaining resources before switch time (FCAOR1#135).",
+        "in72": null,
+        "name": "fraction of capital allocated to obtaining resources 1",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_capital_allocated_to_obtaining_resources_1_table": {
+        "abbr": "FCAOR1T",
+        "code": "135.1",
+        "dependencies": null,
+        "description": "Table relating the fraction of resources remaining to capital allocated to resource extraction (FCAOR1T#135.1).",
+        "in72": null,
+        "name": "fraction of capital allocated to obtaining resources 1 table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.1,
+                0.2,
+                0.3,
+                0.4,
+                0.5,
+                0.6,
+                0.7,
+                0.8,
+                0.9,
+                1
+            ],
+            [
+                1,
+                0.9,
+                0.7,
+                0.5,
+                0.2,
+                0.1,
+                0.05,
+                0.05,
+                0.05,
+                0.05,
+                0.05
+            ]
+        ]
+    },
+    "fraction_of_capital_allocated_to_obtaining_resources_2": {
+        "abbr": "FCAOR2",
+        "code": "136",
+        "dependencies": [
+            "fraction_of_capital_allocated_to_obtaining_resources_2_table",
+            "fraction_of_resources_remaining"
+        ],
+        "description": "Fraction of capital allocated to obtaining resources after switch time (FCAOR2#136).",
+        "in72": null,
+        "name": "fraction of capital allocated to obtaining resources 2",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_capital_allocated_to_obtaining_resources_2_table": {
+        "abbr": "FCAOR2T",
+        "code": "136.1",
+        "dependencies": null,
+        "description": "Table relating the fraction of resources remaining to capital allocated to resource extraction (FCAOR2T#136.1).",
+        "in72": null,
+        "name": "fraction of capital allocated to obtaining resources 2 table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.1,
+                0.2,
+                0.3,
+                0.4,
+                0.5,
+                0.6,
+                0.7,
+                0.8,
+                0.9,
+                1
+            ],
+            [
+                1,
+                0.2,
+                0.1,
+                0.05,
+                0.05,
+                0.05,
+                0.05,
+                0.05,
+                0.05,
+                0.05,
+                0.05
+            ]
+        ]
+    },
+    "fraction_of_industrial_capital_allocated_to_obtaining_resources": {
+        "abbr": "FCAOR",
+        "code": "134",
+        "dependencies": [
+            "time",
+            "fraction_of_capital_allocated_to_obtaining_resources_1",
+            "fraction_of_capital_allocated_to_obtaining_resources_2",
+            "fraction_of_industrial_capital_allocated_to_obtaining_resources_switch_time"
+        ],
+        "description": "FRACTION OF CAPITAL ALLOCATED TO OBTAINING RESOURCES (FCAOR#134).",
+        "in72": "table",
+        "name": "fraction of industrial capital allocated to obtaining resources",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_capital_allocated_to_obtaining_resources_switch_time": {
+        "abbr": "FCAORTM",
+        "code": "--",
+        "dependencies": null,
+        "description": "Time at which to switch between alternative fraction of capital alocated to obtaining resources (FCAORTM#--).",
+        "in72": null,
+        "name": "fraction of industrial capital allocated to obtaining resources switch time",
+        "type": "constant",
+        "value": 4000
+    },
+    "fraction_of_industrial_output_allocated_to_agriculture": {
+        "abbr": "FIOAA",
+        "code": "93",
+        "dependencies": [
+            "policy_year",
+            "time",
+            "fraction_of_industrial_output_allocated_to_agriculture_1",
+            "fraction_of_industrial_output_allocated_to_agriculture_2"
+        ],
+        "description": "FRACTION OF INDUSTRIAL OUTPUT ALLOCATED TO AGRICULTURE (FIOAA#93).",
+        "in72": "table",
+        "name": "fraction of industrial output allocated to agriculture",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_agriculture_1": {
+        "abbr": "FIOAA1",
+        "code": "94",
+        "dependencies": [
+            "food_per_capita",
+            "indicated_food_per_capita",
+            "fraction_industrial_output_allocated_to_agriculture_table_1"
+        ],
+        "description": "Fraction of industrial output allocated to agriculture before policy time (FIOAA1#94).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to agriculture 1",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_agriculture_2": {
+        "abbr": "FIOAA2",
+        "code": "95",
+        "dependencies": [
+            "indicated_food_per_capita",
+            "fraction_industrial_output_allocated_to_agriculture_table_2",
+            "food_per_capita"
+        ],
+        "description": "Fraction of industrial output allocated to agriculture after policy time (FIOAA2#95).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to agriculture 2",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_consumption": {
+        "abbr": "FIOAC",
+        "code": "57",
+        "dependencies": [
+            "industrial_equilibrium_time",
+            "time",
+            "fraction_of_industrial_output_allocated_to_consumption_constant",
+            "fraction_of_industrial_output_allocated_to_consumption_variable"
+        ],
+        "description": "Fraction of industrial output allocated to consumption (FIOAC#57)",
+        "in72": "parameter",
+        "name": "fraction of industrial output allocated to consumption",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_consumption_constant": {
+        "abbr": "FIOACC",
+        "code": "58",
+        "dependencies": [
+            "policy_year",
+            "time",
+            "fraction_of_industrial_output_allocated_to_consumption_constant_1",
+            "fraction_of_industrial_output_allocated_to_consumption_constant_2"
+        ],
+        "description": "Fraction of output allocated to consumption CONSTANT (FIOACC#58).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to consumption constant",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_consumption_constant_1": {
+        "abbr": "FIOAC1",
+        "code": "58.1",
+        "dependencies": null,
+        "description": "Fraction of output allocated to consuption constant 1 (FIOAC1#58.1).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to consumption constant 1",
+        "type": "constant",
+        "value": 0.43
+    },
+    "fraction_of_industrial_output_allocated_to_consumption_constant_2": {
+        "abbr": "FIOAC2",
+        "code": "58.2",
+        "dependencies": null,
+        "description": "Fraction of output allocated to consuption constant 2 (FIOAC2#58.2).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to consumption constant 2",
+        "type": "constant",
+        "value": 0.43
+    },
+    "fraction_of_industrial_output_allocated_to_consumption_variable": {
+        "abbr": "FIOACV",
+        "code": "59",
+        "dependencies": [
+            "industrial_output_per_capita_desired",
+            "industrial_output_per_capita",
+            "fraction_of_industrial_output_allocated_to_consumption_variable_table"
+        ],
+        "description": "Fraction industrial output allocated to consumption variable (FIOACV#59)",
+        "in72": null,
+        "name": "fraction of industrial output allocated to consumption variable",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_consumption_variable_table": {
+        "abbr": "FIOACVT",
+        "code": "59.1",
+        "dependencies": null,
+        "description": "Fraction of industrial output allocated to consumption variable TABLE (FIOACVT#59.1)",
+        "in72": null,
+        "name": "fraction of industrial output allocated to consumption variable table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.2,
+                0.4,
+                0.6,
+                0.8,
+                1,
+                1.2,
+                1.4,
+                1.6,
+                1.8,
+                2
+            ],
+            [
+                0.3,
+                0.32,
+                0.34,
+                0.36,
+                0.38,
+                0.43,
+                0.73,
+                0.77,
+                0.81,
+                0.82,
+                0.83
+            ]
+        ]
+    },
+    "fraction_of_industrial_output_allocated_to_investment": {
+        "abbr": "FIOAI",
+        "code": "56",
+        "dependencies": [
+            "fraction_of_industrial_output_allocated_to_agriculture",
+            "fraction_of_industrial_output_allocated_to_consumption",
+            "fraction_of_industrial_output_allocated_to_services"
+        ],
+        "description": "Fraction of industrial output allocated to industry (FIOAI#56).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to investment",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_services": {
+        "abbr": "FIOAS",
+        "code": "63",
+        "dependencies": [
+            "policy_year",
+            "time",
+            "fraction_of_industrial_output_allocated_to_services_1",
+            "fraction_of_industrial_output_allocated_to_services_2"
+        ],
+        "description": "FRACTION OF INDUSTRIAL OUTPUT ALLOCATED TO SERVICES (FIOAS#63).",
+        "in72": "table",
+        "name": "fraction of industrial output allocated to services",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_services_1": {
+        "abbr": "FIOAS1",
+        "code": "64",
+        "dependencies": [
+            "indicated_services_output_per_capita",
+            "fraction_of_industrial_output_allocated_to_services_table_1",
+            "service_output_per_capita"
+        ],
+        "description": "FRACTION OF INDUSTRIAL OUTPUT ALLOCATED TO SERVICES before policy year (FIOAS1#64).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to services 1",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_services_2": {
+        "abbr": "FIOAS2",
+        "code": "65",
+        "dependencies": [
+            "indicated_services_output_per_capita",
+            "service_output_per_capita",
+            "fraction_of_industrial_output_allocated_to_services_table_2"
+        ],
+        "description": "FRACTION OF INDUSTRIAL OUTPUT ALLOCATED TO SERVICES after policy year (FIOAS2#65).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to services 2",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_industrial_output_allocated_to_services_table_1": {
+        "abbr": "FIOAS1T",
+        "code": "64.1",
+        "dependencies": null,
+        "description": "Table relating service output to the fraction of industrial output allocated to service (FIOAS1T#64.1).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to services table 1",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.5,
+                1,
+                1.5,
+                2
+            ],
+            [
+                0.3,
+                0.2,
+                0.1,
+                0.05,
+                0
+            ]
+        ]
+    },
+    "fraction_of_industrial_output_allocated_to_services_table_2": {
+        "abbr": "FIOAS2T",
+        "code": "65.1",
+        "dependencies": null,
+        "description": "Table relating service output to the fraction of industrial output allocated to service (FIOAS2T#65.1).",
+        "in72": null,
+        "name": "fraction of industrial output allocated to services table 2",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.5,
+                1,
+                1.5,
+                2
+            ],
+            [
+                0.3,
+                0.2,
+                0.1,
+                0.05,
+                0
+            ]
+        ]
+    },
+    "fraction_of_output_in_agriculture": {
+        "abbr": "FAO",
+        "code": "147",
+        "dependencies": [
+            "food",
+            "price_of_food",
+            "industrial_output",
+            "service_output"
+        ],
+        "description": "FRACTION OF OUTPUT IN AGRICULTURE (FAO#147)",
+        "in72": null,
+        "name": "fraction of output in agriculture",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_output_in_industry": {
+        "abbr": "FOI",
+        "code": "148",
+        "dependencies": [
+            "food",
+            "price_of_food",
+            "industrial_output",
+            "service_output"
+        ],
+        "description": "Fraction of output that is industrial output (FOI#148).",
+        "in72": null,
+        "name": "fraction of output in industry",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_output_in_services": {
+        "abbr": "FOS",
+        "code": "149",
+        "dependencies": [
+            "food",
+            "price_of_food",
+            "industrial_output",
+            "service_output"
+        ],
+        "description": "FRACTION OF OUTPUT IN SERVICES (FOS#149).",
+        "in72": null,
+        "name": "fraction of output in services",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_population_urban": {
+        "abbr": "FPU",
+        "code": "26",
+        "dependencies": [
+            "unit_population",
+            "population",
+            "fraction_of_population_urban_table"
+        ],
+        "description": "FRACTION OF POPULATION URBAN (FPU#26).",
+        "in72": "table",
+        "name": "fraction of population urban",
+        "type": "component",
+        "value": null
+    },
+    "fraction_of_population_urban_table": {
+        "abbr": "FPUT",
+        "code": "26.1",
+        "dependencies": null,
+        "description": "Table relating population to the fraction of population that is urban (FPUT#26.1).",
+        "in72": null,
+        "name": "fraction of population urban table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                2000000000.0,
+                4000000000.0,
+                6000000000.0,
+                8000000000.0,
+                10000000000.0,
+                12000000000.0,
+                14000000000.0,
+                16000000000.0
+            ],
+            [
+                0,
+                0.2,
+                0.4,
+                0.5,
+                0.58,
+                0.65,
+                0.72,
+                0.78,
+                0.8
+            ]
+        ]
+    },
+    "fraction_of_resources_from_persistent_materials": {
+        "abbr": "FRPM",
+        "code": "139.1",
+        "dependencies": null,
+        "description": "Fraction of resources as persistent materials (FRPM#139.1)",
+        "in72": "parameter",
+        "name": "fraction of resources from persistent materials",
+        "type": "constant",
+        "value": 0.02
+    },
+    "fraction_of_resources_remaining": {
+        "abbr": "NRFR",
+        "code": "133",
+        "dependencies": [
+            "initial_nonrenewable_resources",
+            "nonrenewable_resources"
+        ],
+        "description": "Non-renewable resource fraction remaining (NRFR#133).",
+        "in72": null,
+        "name": "fraction of resources remaining",
+        "type": "component",
+        "value": null
+    },
+    "fraction_services_allocated_to_fertility_control": {
+        "abbr": "FSAFC",
+        "code": "48",
+        "dependencies": [
+            "need_for_fertility_control",
+            "fraction_services_allocated_to_fertility_control_table"
+        ],
+        "description": "FRACTION OF SERVICES ALLOCATED TO FERTILITY CONTROL (FSAFC#48).",
+        "in72": "table",
+        "name": "fraction services allocated to fertility control",
+        "type": "component",
+        "value": null
+    },
+    "fraction_services_allocated_to_fertility_control_table": {
+        "abbr": "FSAFCT",
+        "code": "48.1",
+        "dependencies": null,
+        "description": "Table relating the need for fertility control to services allocated. (FSAFCT#48.1).",
+        "in72": null,
+        "name": "fraction services allocated to fertility control table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                2,
+                4,
+                6,
+                8,
+                10
+            ],
+            [
+                0,
+                0.005,
+                0.015,
+                0.025,
+                0.03,
+                0.035
+            ]
+        ]
+    },
+    "gdp_index": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "ref_hi_gdp",
+            "gdp_per_capita",
+            "ref_lo_gdp"
+        ],
+        "description": null,
+        "in72": null,
+        "name": "GDP Index",
+        "type": "component",
+        "value": null
+    },
+    "gdp_pc_unit": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "GDP pc unit",
+        "type": "constant",
+        "value": 1
+    },
+    "gdp_per_capita": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "industrial_output_per_capita",
+            "gdp_pc_unit",
+            "gdp_per_capita_lookup"
+        ],
+        "description": null,
+        "in72": null,
+        "name": "GDP per capita",
+        "type": "component",
+        "value": null
+    },
+    "gdp_per_capita_lookup": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "GDP per capita LOOKUP",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                200,
+                400,
+                600,
+                800,
+                1000
+            ],
+            [
+                120,
+                600,
+                1200,
+                1800,
+                2500,
+                3200
+            ]
+        ]
+    },
+    "ha_per_gha": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "ha per Gha",
+        "type": "constant",
+        "value": 1000000000.0
+    },
+    "ha_per_unit_of_pollution": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "ha per unit of pollution",
+        "type": "constant",
+        "value": 4
+    },
+    "health_services_impact_delay": {
+        "abbr": "HSID",
+        "code": "22.1",
+        "dependencies": null,
+        "description": "The delay between allocating health services, and realizing the benefit (HSID#22.1).",
+        "in72": "parameter",
+        "name": "health services impact delay",
+        "type": "constant",
+        "value": 20
+    },
+    "health_services_per_capita": {
+        "abbr": "HSAPC",
+        "code": "21",
+        "dependencies": [
+            "gdp_pc_unit",
+            "health_services_per_capita_table",
+            "service_output_per_capita"
+        ],
+        "description": "Health services allocation per capita (HSAPC#21).",
+        "in72": "table",
+        "name": "health services per capita",
+        "type": "component",
+        "value": null
+    },
+    "health_services_per_capita_table": {
+        "abbr": "HSAPCT",
+        "code": "21.1",
+        "dependencies": null,
+        "description": "The table relating service output to health services (HSAPCT#21.1).",
+        "in72": null,
+        "name": "health services per capita table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                250,
+                500,
+                750,
+                1000,
+                1250,
+                1500,
+                1750,
+                2000
+            ],
+            [
+                0,
+                20,
+                50,
+                95,
+                140,
+                175,
+                200,
+                220,
+                230
+            ]
+        ]
+    },
+    "human_ecological_footprint": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "absorption_land_gha",
+            "urban_land_gha",
+            "total_land",
+            "arable_land_in_gigahectares_gha"
+        ],
+        "description": "See Appendix 2 of Limits to Growth - the 30-Year Update for discussion of this index",
+        "in72": null,
+        "name": "Human Ecological Footprint",
+        "type": "component",
+        "value": null
+    },
+    "human_welfare_index": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "education_index",
+            "gdp_index",
+            "life_expectancy_index"
+        ],
+        "description": "See Appendix 2 of Limits to Growth - the 30-Year Update for discussion of this index",
+        "in72": null,
+        "name": "Human Welfare Index",
+        "type": "component",
+        "value": null
+    },
+    "income_expectation_averaging_time": {
+        "abbr": "IEAT",
+        "code": "43.1",
+        "dependencies": null,
+        "description": "Income expectation averaging time (IEAT#43.1)",
+        "in72": "parameter",
+        "name": "income expectation averaging time",
+        "type": "constant",
+        "value": 3
+    },
+    "ind_out_in_1970": {
+        "abbr": "IO70",
+        "code": "107.2",
+        "dependencies": null,
+        "description": "INDUSTRIAL OUTPUT IN 1970 (IO70#107.2)",
+        "in72": "parameter",
+        "name": "IND OUT IN 1970",
+        "type": "constant",
+        "value": 790000000000.0
+    },
+    "indicated_food_per_capita": {
+        "abbr": "IFPC",
+        "code": "89",
+        "dependencies": [
+            "indicated_food_per_capita_2",
+            "indicated_food_per_capita_1",
+            "time",
+            "policy_year"
+        ],
+        "description": "Indicated food per capita (IFPC#89).",
+        "in72": "table",
+        "name": "indicated food per capita",
+        "type": "component",
+        "value": null
+    },
+    "indicated_food_per_capita_1": {
+        "abbr": "IFPC1",
+        "code": "90",
+        "dependencies": [
+            "industrial_output_per_capita",
+            "gdp_pc_unit",
+            "indicated_food_per_capita_table_1"
+        ],
+        "description": "Indicated foord per capita befor policy time (IFPC1#90).",
+        "in72": null,
+        "name": "indicated food per capita 1",
+        "type": "component",
+        "value": null
+    },
+    "indicated_food_per_capita_2": {
+        "abbr": "IFPC1",
+        "code": "90",
+        "dependencies": [
+            "indicated_food_per_capita_table_2",
+            "industrial_output_per_capita",
+            "gdp_pc_unit"
+        ],
+        "description": "Indicated foord per capita after policy time (IFPC1#90).",
+        "in72": null,
+        "name": "indicated food per capita 2",
+        "type": "component",
+        "value": null
+    },
+    "indicated_food_per_capita_table_1": {
+        "abbr": "IFPC1T",
+        "code": "90.1",
+        "dependencies": null,
+        "description": "Table relating industrial output to indicated food requirements 1 (IFPC1T#90.1).",
+        "in72": null,
+        "name": "indicated food per capita table 1",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                200,
+                400,
+                600,
+                800,
+                1000,
+                1200,
+                1400,
+                1600
+            ],
+            [
+                230,
+                480,
+                690,
+                850,
+                970,
+                1070,
+                1150,
+                1210,
+                1250
+            ]
+        ]
+    },
+    "indicated_food_per_capita_table_2": {
+        "abbr": "IFPC2T",
+        "code": "90.2",
+        "dependencies": null,
+        "description": "Table relating industrial output to indicated food requirements 2 (IFPC2T#90.2).",
+        "in72": null,
+        "name": "indicated food per capita table 2",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                200,
+                400,
+                600,
+                800,
+                1000,
+                1200,
+                1400,
+                1600
+            ],
+            [
+                230,
+                480,
+                690,
+                850,
+                970,
+                1070,
+                1150,
+                1210,
+                1250
+            ]
+        ]
+    },
+    "indicated_services_output_per_capita": {
+        "abbr": "ISOPC",
+        "code": "60",
+        "dependencies": [
+            "policy_year",
+            "indicated_services_output_per_capita_2",
+            "time",
+            "indicated_services_output_per_capita_1"
+        ],
+        "description": "Indicated service output per capita (ISOPC#60).",
+        "in72": "table",
+        "name": "indicated services output per capita",
+        "type": "component",
+        "value": null
+    },
+    "indicated_services_output_per_capita_1": {
+        "abbr": "ISOPC1",
+        "code": "61",
+        "dependencies": [
+            "industrial_output_per_capita",
+            "gdp_pc_unit",
+            "indicated_services_output_per_capita_table_1"
+        ],
+        "description": "Indicated service output per capita before policy year (ISOPC1#61).",
+        "in72": null,
+        "name": "indicated services output per capita 1",
+        "type": "component",
+        "value": null
+    },
+    "indicated_services_output_per_capita_2": {
+        "abbr": "ISOPC2",
+        "code": "62",
+        "dependencies": [
+            "industrial_output_per_capita",
+            "gdp_pc_unit",
+            "indicated_services_output_per_capita_table_2"
+        ],
+        "description": "Indicated service output per capita after policy year (ISOPC2#62).",
+        "in72": null,
+        "name": "indicated services output per capita 2",
+        "type": "component",
+        "value": null
+    },
+    "indicated_services_output_per_capita_table_1": {
+        "abbr": "ISOPC1T",
+        "code": "61.1",
+        "dependencies": null,
+        "description": "Table relating industrial output per capita to the indicated service output per capita before policy year (ISOPC1T#61.1).",
+        "in72": null,
+        "name": "indicated services output per capita table 1",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                200,
+                400,
+                600,
+                800,
+                1000,
+                1200,
+                1400,
+                1600
+            ],
+            [
+                40,
+                300,
+                640,
+                1000,
+                1220,
+                1450,
+                1650,
+                1800,
+                2000
+            ]
+        ]
+    },
+    "indicated_services_output_per_capita_table_2": {
+        "abbr": "ISOPC2T",
+        "code": "62.2",
+        "dependencies": null,
+        "description": "Table relating industrial output per capita to the indicated service output per capita afte policy year (ISOPC2T#62.2).",
+        "in72": null,
+        "name": "indicated services output per capita table 2",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                200,
+                400,
+                600,
+                800,
+                1000,
+                1200,
+                1400,
+                1600
+            ],
+            [
+                40,
+                300,
+                640,
+                1000,
+                1220,
+                1450,
+                1650,
+                1800,
+                2000
+            ]
+        ]
+    },
+    "industrial_capital": {
+        "abbr": "IC",
+        "code": "52",
+        "dependencies": [
+            "industrial_capital_investment",
+            "initial_industrial_capital",
+            "industrial_capital_depreciation"
+        ],
+        "description": "INDUSTRIAL CAPITAL (IC#52).",
+        "in72": "state",
+        "name": "Industrial Capital",
+        "stateful_func": "integ_industrial_capital",
+        "type": "stateful",
+        "value": null
+    },
+    "industrial_capital_depreciation": {
+        "abbr": "ICDR",
+        "code": "53",
+        "dependencies": [
+            "industrial_capital",
+            "average_life_of_industrial_capital"
+        ],
+        "description": "Industrial capital depreciation rate (ICDR#53).",
+        "in72": null,
+        "name": "industrial capital depreciation",
+        "type": "component",
+        "value": null
+    },
+    "industrial_capital_investment": {
+        "abbr": "ICIR",
+        "code": "55",
+        "dependencies": [
+            "fraction_of_industrial_output_allocated_to_investment",
+            "industrial_output"
+        ],
+        "description": "Industrial capital investment rate (ICIR#55).",
+        "in72": null,
+        "name": "industrial capital investment",
+        "type": "component",
+        "value": null
+    },
+    "industrial_capital_output_ratio": {
+        "abbr": "ICOR",
+        "code": "51",
+        "dependencies": [
+            "policy_year",
+            "time",
+            "industrial_capital_output_ratio_2",
+            "industrial_capital_output_ratio_1"
+        ],
+        "description": "INDUSTRIAL CAPITAL-OUTPUT RATIO (ICOR#51)",
+        "in72": "parameter",
+        "name": "industrial capital output ratio",
+        "type": "component",
+        "value": null
+    },
+    "industrial_capital_output_ratio_1": {
+        "abbr": "ICOR1",
+        "code": "51.1",
+        "dependencies": null,
+        "description": "Industrial capital output ratio prior to the policy year (ICOR1#51.1)",
+        "in72": null,
+        "name": "industrial capital output ratio 1",
+        "type": "constant",
+        "value": 3
+    },
+    "industrial_capital_output_ratio_2": {
+        "abbr": "ICOR2",
+        "code": "51.2",
+        "dependencies": [
+            "industrial_capital_output_ratio_multiplier_from_land_yield_technology",
+            "industrial_capital_output_ratio_multiplier_from_pollution_technology",
+            "industrial_capital_output_ratio_multiplier_from_resource_conservation_technology"
+        ],
+        "description": "Industrial capital output ratio after the policy year (ICOR2#51.2)",
+        "in72": null,
+        "name": "industrial capital output ratio 2",
+        "type": "component",
+        "value": null
+    },
+    "industrial_capital_output_ratio_multiplier_from_land_yield_technology": {
+        "abbr": "COYM",
+        "code": "--",
+        "dependencies": [
+            "land_yield_multiplier_from_technology",
+            "industrial_capital_output_ratio_multiplier_table"
+        ],
+        "description": "CAPITAL OUTPUT YIELD MULTIPLIER (COYM#--)",
+        "in72": null,
+        "name": "industrial capital output ratio multiplier from land yield technology",
+        "type": "component",
+        "value": null
+    },
+    "industrial_capital_output_ratio_multiplier_from_pollution_table": {
+        "abbr": "COPMT",
+        "code": "--",
+        "dependencies": null,
+        "description": "Table relating pollution correction technology to the capital output ratio (COPMT#--)",
+        "in72": null,
+        "name": "industrial capital output ratio multiplier from pollution table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.1,
+                0.2,
+                0.3,
+                0.4,
+                0.5,
+                0.6,
+                0.7,
+                0.8,
+                0.9,
+                1
+            ],
+            [
+                1.25,
+                1.2,
+                1.15,
+                1.11,
+                1.08,
+                1.05,
+                1.03,
+                1.02,
+                1.01,
+                1,
+                1
+            ]
+        ]
+    },
+    "industrial_capital_output_ratio_multiplier_from_pollution_technology": {
+        "abbr": "COPM",
+        "code": "--",
+        "dependencies": [
+            "persistent_pollution_generation_factor",
+            "industrial_capital_output_ratio_multiplier_from_pollution_table"
+        ],
+        "description": "Pollution control technology multiplier for capital output ratio (COPM#--).",
+        "in72": null,
+        "name": "industrial capital output ratio multiplier from pollution technology",
+        "type": "component",
+        "value": null
+    },
+    "industrial_capital_output_ratio_multiplier_from_resource_conservation_technology": {
+        "abbr": "ICOR2T",
+        "code": "--",
+        "dependencies": [
+            "resource_use_factor",
+            "industrial_capital_output_ratio_multiplier_from_resource_table"
+        ],
+        "description": "Technology driven industrial capital output ratio (ICOR2T#--)",
+        "in72": null,
+        "name": "industrial capital output ratio multiplier from resource conservation technology",
+        "type": "component",
+        "value": null
+    },
+    "industrial_capital_output_ratio_multiplier_from_resource_table": {
+        "abbr": "ICOR2TT",
+        "code": "--",
+        "dependencies": null,
+        "description": "CAPITAL OUTPUT FROM RESOURCES technology multiplier TABLE (ICOR2TT#--)",
+        "in72": null,
+        "name": "industrial capital output ratio multiplier from resource table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.1,
+                0.2,
+                0.3,
+                0.4,
+                0.5,
+                0.6,
+                0.7,
+                0.8,
+                0.9,
+                1
+            ],
+            [
+                3.75,
+                3.6,
+                3.47,
+                3.36,
+                3.25,
+                3.16,
+                3.1,
+                3.06,
+                3.02,
+                3.01,
+                3
+            ]
+        ]
+    },
+    "industrial_capital_output_ratio_multiplier_table": {
+        "abbr": "COYMT",
+        "code": "--",
+        "dependencies": null,
+        "description": "Table relating the yield of technology to the effect on the capital output ratio (COYMT#--) ! !",
+        "in72": null,
+        "name": "industrial capital output ratio multiplier table",
+        "type": "lookup",
+        "value": [
+            [
+                1,
+                1.2,
+                1.4,
+                1.6,
+                1.8,
+                2
+            ],
+            [
+                1,
+                1.05,
+                1.12,
+                1.25,
+                1.35,
+                1.5
+            ]
+        ]
+    },
+    "industrial_equilibrium_time": {
+        "abbr": "IET",
+        "code": "57.1",
+        "dependencies": null,
+        "description": "INDUSTRIAL EQUILIBRIUM TIME (IET#57.1).",
+        "in72": null,
+        "name": "industrial equilibrium time",
+        "type": "constant",
+        "value": 4000
+    },
+    "industrial_material_emissions_factor": {
+        "abbr": "IMEF",
+        "code": "139.2",
+        "dependencies": null,
+        "description": "Industrial materials emission factor (IMEF#139.2).",
+        "in72": "parameter",
+        "name": "industrial material emissions factor",
+        "type": "constant",
+        "value": 0.1
+    },
+    "industrial_material_toxicity_index": {
+        "abbr": "IMTI",
+        "code": "139.3",
+        "dependencies": null,
+        "description": "Industrial materials toxicity index (IMTI#139.3)",
+        "in72": "parameter",
+        "name": "industrial material toxicity index",
+        "type": "constant",
+        "value": 10
+    },
+    "industrial_output": {
+        "abbr": "IO",
+        "code": "50",
+        "dependencies": [
+            "industrial_capital_output_ratio",
+            "fraction_of_industrial_capital_allocated_to_obtaining_resources",
+            "industrial_capital",
+            "capacity_utilization_fraction"
+        ],
+        "description": "Industrial output (IO#50)",
+        "in72": null,
+        "name": "industrial output",
+        "type": "component",
+        "value": null
+    },
+    "industrial_output_per_capita": {
+        "abbr": "IOPC",
+        "code": "49",
+        "dependencies": [
+            "industrial_output",
+            "population"
+        ],
+        "description": "INDUSTRIAL OUTPUT PER CAPITA (IOPC#49)",
+        "in72": null,
+        "name": "industrial output per capita",
+        "type": "component",
+        "value": null
+    },
+    "industrial_output_per_capita_desired": {
+        "abbr": "IOPCD",
+        "code": "59.2",
+        "dependencies": null,
+        "description": "Industrial output per capita desired (IOPCD#59.2).",
+        "in72": "parameter",
+        "name": "industrial output per capita desired",
+        "type": "constant",
+        "value": 400
+    },
+    "inherent_land_fertility": {
+        "abbr": "ILF",
+        "code": "124.1",
+        "dependencies": null,
+        "description": "INHERENT LAND FERTILITY (ILF#124.1).",
+        "in72": "parameter",
+        "name": "inherent land fertility",
+        "type": "constant",
+        "value": 600
+    },
+    "initial_arable_land": {
+        "abbr": "ALI",
+        "code": "85.2",
+        "dependencies": null,
+        "description": "The initial amount of land that is arable. (ALI#85.2).",
+        "in72": null,
+        "name": "initial arable land",
+        "type": "constant",
+        "value": 900000000.0
+    },
+    "initial_industrial_capital": {
+        "abbr": "ICI",
+        "code": "52.1",
+        "dependencies": null,
+        "description": "INDUSTRIAL CAPITAL INITIAL (ICI#52.1).",
+        "in72": null,
+        "name": "initial industrial capital",
+        "type": "constant",
+        "value": 210000000000.0
+    },
+    "initial_land_fertility": {
+        "abbr": "LFERTI",
+        "code": "121.2",
+        "dependencies": null,
+        "description": "LAND FERTILITY INITIAL (LFERTI#121.2)",
+        "in72": null,
+        "name": "initial land fertility",
+        "type": "constant",
+        "value": 600
+    },
+    "initial_nonrenewable_resources": {
+        "abbr": "NRI",
+        "code": "129.2",
+        "dependencies": null,
+        "description": "NONRENEWABLE RESOURCE INITIAL (NRI#129.2).",
+        "in72": null,
+        "name": "initial nonrenewable resources",
+        "type": "constant",
+        "value": 1000000000000.0
+    },
+    "initial_persistent_pollution": {
+        "abbr": "PPOLI",
+        "code": "142.2",
+        "dependencies": null,
+        "description": "persistent pollution initial (PPOLI#142.2)",
+        "in72": null,
+        "name": "initial persistent pollution",
+        "type": "constant",
+        "value": 25000000.0
+    },
+    "initial_population_0_to_14": {
+        "abbr": "P1I",
+        "code": "2.2",
+        "dependencies": null,
+        "description": "The initial number of people aged 0 to 14 (P1I#2.2).",
+        "in72": null,
+        "name": "initial population 0 to 14",
+        "type": "constant",
+        "value": 650000000.0
+    },
+    "initial_population_15_to_44": {
+        "abbr": "P2I",
+        "code": "6.2",
+        "dependencies": null,
+        "description": "The initial number of people aged 15 to 44 (P2I#6.2).",
+        "in72": null,
+        "name": "initial population 15 to 44",
+        "type": "constant",
+        "value": 700000000.0
+    },
+    "initial_population_54_to_64": {
+        "abbr": "P3I",
+        "code": "10.2",
+        "dependencies": null,
+        "description": "The initial number of people aged 45 to 64 (P3I#10.2).",
+        "in72": null,
+        "name": "initial population 54 to 64",
+        "type": "constant",
+        "value": 190000000.0
+    },
+    "initial_population_65_plus": {
+        "abbr": "P4I",
+        "code": "14.2",
+        "dependencies": null,
+        "description": "The initial number of people aged 65 and over (P4I#14.2)",
+        "in72": null,
+        "name": "initial population 65 plus",
+        "type": "constant",
+        "value": 60000000.0
+    },
+    "initial_potentially_arable_land": {
+        "abbr": "PALI",
+        "code": "86.2",
+        "dependencies": null,
+        "description": "The initial amount of potentially arable land (PALI#86.2).",
+        "in72": null,
+        "name": "initial potentially arable land",
+        "type": "constant",
+        "value": 2300000000.0
+    },
+    "initial_service_capital": {
+        "abbr": "SCI",
+        "code": "67.2",
+        "dependencies": null,
+        "description": "The initial level of service capital (SCI#67.2)",
+        "in72": null,
+        "name": "initial service capital",
+        "type": "constant",
+        "value": 144000000000.0
+    },
+    "initial_time": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": "The time at which the simulation begins.",
+        "in72": null,
+        "name": "INITIAL TIME",
+        "type": "constant",
+        "value": 1900
+    },
+    "initial_urban_and_industrial_land": {
+        "abbr": "UILI",
+        "code": "120.1",
+        "dependencies": null,
+        "description": "URBAN-INDUSTRIAL LAND INITIAL (UILI#120.1).",
+        "in72": null,
+        "name": "initial urban and industrial land",
+        "type": "constant",
+        "value": 8200000.0
+    },
+    "jobs": {
+        "abbr": "J",
+        "code": "73",
+        "dependencies": [
+            "potential_jobs_agricultural_sector",
+            "potential_jobs_industrial_sector",
+            "potential_jobs_service_sector"
+        ],
+        "description": "JOBS (J#73).",
+        "in72": null,
+        "name": "jobs",
+        "type": "component",
+        "value": null
+    },
+    "jobs_per_hectare": {
+        "abbr": "JPH",
+        "code": "79",
+        "dependencies": [
+            "jobs_per_hectare_table",
+            "agricultural_input_per_hectare",
+            "unit_agricultural_input"
+        ],
+        "description": "Jobs per hectare in agriculture (JPH#79).",
+        "in72": "table",
+        "name": "jobs per hectare",
+        "type": "component",
+        "value": null
+    },
+    "jobs_per_hectare_table": {
+        "abbr": "JPHT",
+        "code": "79.1",
+        "dependencies": null,
+        "description": "Table relating agricultural input intensity to the number of jobs per hectare in agriculture (JPHT#79.1).",
+        "in72": null,
+        "name": "jobs per hectare table",
+        "type": "lookup",
+        "value": [
+            [
+                2,
+                6,
+                10,
+                14,
+                18,
+                22,
+                26,
+                30
+            ],
+            [
+                2,
+                0.5,
+                0.4,
+                0.3,
+                0.27,
+                0.24,
+                0.2,
+                0.2
+            ]
+        ]
+    },
+    "jobs_per_industrial_capital_unit": {
+        "abbr": "JPICU",
+        "code": "75",
+        "dependencies": [
+            "jobs_per_industrial_capital_unit_table",
+            "gdp_pc_unit",
+            "industrial_output_per_capita"
+        ],
+        "description": "Jobs per industrial capital units (JPICU#75).",
+        "in72": "table",
+        "name": "jobs per industrial capital unit",
+        "type": "component",
+        "value": null
+    },
+    "jobs_per_industrial_capital_unit_table": {
+        "abbr": "JPICUT",
+        "code": "75.1",
+        "dependencies": null,
+        "description": "Table relating industrial output per capita to job per industrial capital unit (JPICUT#75.1).",
+        "in72": null,
+        "name": "jobs per industrial capital unit table",
+        "type": "lookup",
+        "value": [
+            [
+                50,
+                200,
+                350,
+                500,
+                650,
+                800
+            ],
+            [
+                0.37,
+                0.18,
+                0.12,
+                0.09,
+                0.07,
+                0.06
+            ]
+        ]
+    },
+    "jobs_per_service_capital_unit": {
+        "abbr": "JPSCU",
+        "code": "77",
+        "dependencies": [
+            "gdp_pc_unit",
+            "service_output_per_capita",
+            "jobs_per_service_capital_unit_table"
+        ],
+        "description": "Jobs per service capital unit (JPSCU#77).",
+        "in72": "table",
+        "name": "jobs per service capital unit",
+        "type": "component",
+        "value": null
+    },
+    "jobs_per_service_capital_unit_table": {
+        "abbr": "JPSCUT",
+        "code": "77.1",
+        "dependencies": null,
+        "description": "Table relating service output per capita to job per service capital unit (JPSCUT#77.1).",
+        "in72": null,
+        "name": "jobs per service capital unit table",
+        "type": "lookup",
+        "value": [
+            [
+                50,
+                200,
+                350,
+                500,
+                650,
+                800
+            ],
+            [
+                1.1,
+                0.6,
+                0.35,
+                0.2,
+                0.15,
+                0.15
+            ]
+        ]
+    },
+    "labor_force": {
+        "abbr": "LF",
+        "code": "80",
+        "dependencies": [
+            "population_45_to_64",
+            "population_15_to_44",
+            "labor_force_participation_fraction"
+        ],
+        "description": "LABOR FORCE (LF#80).",
+        "in72": null,
+        "name": "labor force",
+        "type": "component",
+        "value": null
+    },
+    "labor_force_participation_fraction": {
+        "abbr": "LFPF",
+        "code": "80.1",
+        "dependencies": null,
+        "description": "LABOR FORCE PARTICIPATION FRACTION (LFPF#80.1)",
+        "in72": "parameter",
+        "name": "labor force participation fraction",
+        "type": "constant",
+        "value": 0.75
+    },
+    "labor_utilization_fraction": {
+        "abbr": "LUF",
+        "code": "81",
+        "dependencies": [
+            "labor_force",
+            "jobs"
+        ],
+        "description": "Labor utilization fraction (LUF#81).",
+        "in72": null,
+        "name": "labor utilization fraction",
+        "type": "component",
+        "value": null
+    },
+    "labor_utilization_fraction_delay_time": {
+        "abbr": "LUFDT",
+        "code": "82.1",
+        "dependencies": null,
+        "description": "Labor utilization fraction delay time (LUFDT#82.1)",
+        "in72": "parameter",
+        "name": "labor utilization fraction delay time",
+        "type": "constant",
+        "value": 2
+    },
+    "land_development_rate": {
+        "abbr": "LDR",
+        "code": "96",
+        "dependencies": [
+            "development_cost_per_hectare",
+            "fraction_of_agricultural_inputs_allocated_to_land_development",
+            "total_agricultural_investment"
+        ],
+        "description": "The land developmen rate (LDR#96).",
+        "in72": null,
+        "name": "land development rate",
+        "type": "component",
+        "value": null
+    },
+    "land_erosion_rate": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "arable_land",
+            "average_life_of_land"
+        ],
+        "description": "Land erosion rate (LER#",
+        "in72": null,
+        "name": "land erosion rate",
+        "type": "component",
+        "value": null
+    },
+    "land_fertility": {
+        "abbr": "LFERT",
+        "code": "121",
+        "dependencies": [
+            "land_fertility_degredation",
+            "initial_land_fertility",
+            "land_fertility_regeneration"
+        ],
+        "description": "Land fertility (LFERT#121).",
+        "in72": "state",
+        "name": "Land Fertility",
+        "stateful_func": "integ_land_fertility",
+        "type": "stateful",
+        "value": null
+    },
+    "land_fertility_degredation": {
+        "abbr": "LFD",
+        "code": "123",
+        "dependencies": [
+            "land_fertility_degredation_rate",
+            "land_fertility"
+        ],
+        "description": "LAND FERTILITY DEGRADATION (LFD#123).",
+        "in72": null,
+        "name": "land fertility degredation",
+        "type": "component",
+        "value": null
+    },
+    "land_fertility_degredation_rate": {
+        "abbr": "LFDR",
+        "code": "122",
+        "dependencies": [
+            "persistent_pollution_index",
+            "land_fertility_degredation_rate_table"
+        ],
+        "description": "Land fertility degradation rate (LFDR#122).",
+        "in72": "table",
+        "name": "land fertility degredation rate",
+        "type": "component",
+        "value": null
+    },
+    "land_fertility_degredation_rate_table": {
+        "abbr": "LFDRT",
+        "code": "122.1",
+        "dependencies": null,
+        "description": "Table relating persistent pollution to land fertility degradation (LFDRT#122.1).",
+        "in72": null,
+        "name": "land fertility degredation rate table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                10,
+                20,
+                30
+            ],
+            [
+                0,
+                0.1,
+                0.3,
+                0.5
+            ]
+        ]
+    },
+    "land_fertility_regeneration": {
+        "abbr": "LFR",
+        "code": "124",
+        "dependencies": [
+            "land_fertility",
+            "land_fertility_regeneration_time",
+            "inherent_land_fertility"
+        ],
+        "description": "Land fertility regeneration (LFR#124).",
+        "in72": null,
+        "name": "land fertility regeneration",
+        "type": "component",
+        "value": null
+    },
+    "land_fertility_regeneration_time": {
+        "abbr": "LFRT",
+        "code": "125",
+        "dependencies": [
+            "fraction_of_agricultural_inputs_for_land_maintenance",
+            "land_fertility_regeneration_time_table"
+        ],
+        "description": "LAND FERTILITY REGENERATION TIME (LFRT#125)",
+        "in72": "table",
+        "name": "land fertility regeneration time",
+        "type": "component",
+        "value": null
+    },
+    "land_fertility_regeneration_time_table": {
+        "abbr": "LFRTT",
+        "code": "125.1",
+        "dependencies": null,
+        "description": "Table relating inputs to land maintenance to land fertility regeneration (LFRTT#125.1).",
+        "in72": null,
+        "name": "land fertility regeneration time table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                0.02,
+                0.04,
+                0.06,
+                0.08,
+                0.1
+            ],
+            [
+                20,
+                13,
+                8,
+                4,
+                2,
+                2
+            ]
+        ]
+    },
+    "land_fr_cult": {
+        "abbr": "LFC",
+        "code": "84",
+        "dependencies": [
+            "potentially_arable_land_total",
+            "arable_land"
+        ],
+        "description": "Land fraction under cultivarion (LFC#84).",
+        "in72": null,
+        "name": "land fr cult",
+        "type": "component",
+        "value": null
+    },
+    "land_fraction_harvested": {
+        "abbr": "LFH",
+        "code": "87.1",
+        "dependencies": null,
+        "description": "Land fraction harvested (LFH#87.1).",
+        "in72": "parameter",
+        "name": "land fraction harvested",
+        "type": "constant",
+        "value": 0.7
+    },
+    "land_life_multiplier_from_land_yield": {
+        "abbr": "LLMY",
+        "code": "113",
+        "dependencies": [
+            "land_life_policy_implementation_time",
+            "land_life_multiplier_from_land_yield_2",
+            "time",
+            "land_life_multiplier_from_land_yield_1",
+            "one_year"
+        ],
+        "description": "LAND LIFE MULTIPLIER FROM YIELD (LLMY#113).",
+        "in72": "table",
+        "name": "land life multiplier from land yield",
+        "type": "component",
+        "value": null
+    },
+    "land_life_multiplier_from_land_yield_1": {
+        "abbr": "LLMY1",
+        "code": "114",
+        "dependencies": [
+            "land_life_multiplier_from_land_yield_table_1",
+            "land_yield",
+            "inherent_land_fertility"
+        ],
+        "description": "Land life multiplier from yield before switch time (LLMY1#114).",
+        "in72": null,
+        "name": "land life multiplier from land yield 1",
+        "type": "component",
+        "value": null
+    },
+    "land_life_multiplier_from_land_yield_2": {
+        "abbr": "LLMY2",
+        "code": "115",
+        "dependencies": [
+            "land_yield",
+            "inherent_land_fertility",
+            "land_life_multiplier_from_land_yield_table_2"
+        ],
+        "description": "Land life multiplier from yield after switch time (LLMY2#115).",
+        "in72": null,
+        "name": "land life multiplier from land yield 2",
+        "type": "component",
+        "value": null
+    },
+    "land_life_multiplier_from_land_yield_table_1": {
+        "abbr": "LLMY1T",
+        "code": "114.1",
+        "dependencies": null,
+        "description": "Table relating yield to the effect on land life (LLMY1T#114.1).",
+        "in72": null,
+        "name": "land life multiplier from land yield table 1",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+            ],
+            [
+                1.2,
+                1,
+                0.63,
+                0.36,
+                0.16,
+                0.055,
+                0.04,
+                0.025,
+                0.015,
+                0.01
+            ]
+        ]
+    },
+    "land_life_multiplier_from_land_yield_table_2": {
+        "abbr": "LLMY2T",
+        "code": "115.1",
+        "dependencies": null,
+        "description": "Table relating yield to the effect on land life (LLMY2T#115.1).",
+        "in72": null,
+        "name": "land life multiplier from land yield table 2",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+            ],
+            [
+                1.2,
+                1,
+                0.63,
+                0.36,
+                0.29,
+                0.26,
+                0.24,
+                0.22,
+                0.21,
+                0.2
+            ]
+        ]
+    },
+    "land_life_policy_implementation_time": {
+        "abbr": "LLMYTM",
+        "code": "--",
+        "dependencies": null,
+        "description": "Land life multiplier from yield switch time (LLMYTM#--)",
+        "in72": null,
+        "name": "land life policy implementation time",
+        "type": "constant",
+        "value": 4000
+    },
+    "land_removal_for_urban_and_industrial_use": {
+        "abbr": "LRUI",
+        "code": "119",
+        "dependencies": [
+            "urban_and_industrial_land_development_time",
+            "urban_and_industrial_land",
+            "urban_and_industrial_land_required"
+        ],
+        "description": "LAND REMOVAL FOR URBAN-INDUSTRIAL USE (LRUI#119).",
+        "in72": null,
+        "name": "land removal for urban and industrial use",
+        "type": "component",
+        "value": null
+    },
+    "land_yield": {
+        "abbr": "LY",
+        "code": "103",
+        "dependencies": [
+            "land_yield_multiplier_from_capital",
+            "land_yield_multiplier_from_air_pollution",
+            "land_fertility",
+            "land_yield_multiplier_from_technology"
+        ],
+        "description": "LAND YIELD (LY#103)",
+        "in72": null,
+        "name": "land yield",
+        "type": "component",
+        "value": null
+    },
+    "land_yield_factor_1": {
+        "abbr": "LYF1",
+        "code": "104.1",
+        "dependencies": null,
+        "description": "Land yield factor before policy year (LYF1#104.1).",
+        "in72": null,
+        "name": "land yield factor 1",
+        "type": "constant",
+        "value": 1
+    },
+    "land_yield_factor_2": {
+        "abbr": "LYF2",
+        "code": "104.2",
+        "dependencies": [
+            "land_yield_technology",
+            "technology_development_delay"
+        ],
+        "description": "Land yield factor after policy year (LYF2#104.2).",
+        "in72": null,
+        "name": "land yield factor 2",
+        "stateful_func": "smooth_land_yield_technology_technology_development_delay_land_yield_technology_3",
+        "type": "stateful",
+        "value": null
+    },
+    "land_yield_multipler_from_air_pollution_1": {
+        "abbr": "LYMAP1",
+        "code": "106",
+        "dependencies": [
+            "land_yield_multipler_from_air_pollution_table_1",
+            "industrial_output",
+            "ind_out_in_1970"
+        ],
+        "description": "Land yield multiplier from air pollution before air poll time (LYMAP1#106).",
+        "in72": null,
+        "name": "land yield multipler from air pollution 1",
+        "type": "component",
+        "value": null
+    },
+    "land_yield_multipler_from_air_pollution_table_1": {
+        "abbr": "LYMAP1T",
+        "code": "106.1",
+        "dependencies": null,
+        "description": "Table relating non-persistent pollution from industry to agricultural output (LYMAP1T#106.1).",
+        "in72": null,
+        "name": "land yield multipler from air pollution table 1",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                10,
+                20,
+                30
+            ],
+            [
+                1,
+                1,
+                0.7,
+                0.4
+            ]
+        ]
+    },
+    "land_yield_multipler_from_air_pollution_table_2": {
+        "abbr": "LYMAP2T",
+        "code": "107.1",
+        "dependencies": null,
+        "description": "Table relating non-persistent pollution from industry to agricultural output (LYMAP2T#107.1).",
+        "in72": null,
+        "name": "land yield multipler from air pollution table 2",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                10,
+                20,
+                30
+            ],
+            [
+                1,
+                1,
+                0.98,
+                0.95
+            ]
+        ]
+    },
+    "land_yield_multiplier_from_air_pollution": {
+        "abbr": "LYMAP",
+        "code": "105",
+        "dependencies": [
+            "land_yield_multipler_from_air_pollution_1",
+            "time",
+            "land_yield_multiplier_from_air_pollution_2",
+            "air_pollution_policy_implementation_time"
+        ],
+        "description": "Land yield multiplier from air pollution (LYMAP#105).",
+        "in72": "table",
+        "name": "land yield multiplier from air pollution",
+        "type": "component",
+        "value": null
+    },
+    "land_yield_multiplier_from_air_pollution_2": {
+        "abbr": "LYMAP2",
+        "code": "107",
+        "dependencies": [
+            "land_yield_multipler_from_air_pollution_table_2",
+            "industrial_output",
+            "ind_out_in_1970"
+        ],
+        "description": "Land yield multiplier from air pollution after air poll time (LYMAP2#107).",
+        "in72": null,
+        "name": "land yield multiplier from air pollution 2",
+        "type": "component",
+        "value": null
+    },
+    "land_yield_multiplier_from_capital": {
+        "abbr": "LYMC",
+        "code": "102",
+        "dependencies": [
+            "agricultural_input_per_hectare",
+            "land_yield_multiplier_from_capital_table",
+            "unit_agricultural_input"
+        ],
+        "description": "LAND YIELD MULTIPLIER FROM CAPITAL (LYMC#102)",
+        "in72": "table",
+        "name": "land yield multiplier from capital",
+        "type": "component",
+        "value": null
+    },
+    "land_yield_multiplier_from_capital_table": {
+        "abbr": "LYMCT",
+        "code": "102.1",
+        "dependencies": null,
+        "description": "Table relating agricultural inputs to land yeild (LYMCT#102.1).",
+        "in72": null,
+        "name": "land yield multiplier from capital table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                40,
+                80,
+                120,
+                160,
+                200,
+                240,
+                280,
+                320,
+                360,
+                400,
+                440,
+                480,
+                520,
+                560,
+                600,
+                640,
+                680,
+                720,
+                760,
+                800,
+                840,
+                880,
+                920,
+                960,
+                1000
+            ],
+            [
+                1,
+                3,
+                4.5,
+                5,
+                5.3,
+                5.6,
+                5.9,
+                6.1,
+                6.35,
+                6.6,
+                6.9,
+                7.2,
+                7.4,
+                7.6,
+                7.8,
+                8,
+                8.2,
+                8.4,
+                8.6,
+                8.8,
+                9,
+                9.2,
+                9.4,
+                9.6,
+                9.8,
+                10
+            ]
+        ]
+    },
+    "land_yield_multiplier_from_technology": {
+        "abbr": "LYF",
+        "code": "104",
+        "dependencies": [
+            "policy_year",
+            "land_yield_factor_2",
+            "time",
+            "land_yield_factor_1"
+        ],
+        "description": "Land Yield factor (LYF#104)",
+        "in72": "parameter",
+        "name": "land yield multiplier from technology",
+        "type": "component",
+        "value": null
+    },
+    "land_yield_technology": {
+        "abbr": "LYTD",
+        "code": "--",
+        "dependencies": [
+            "land_yield_technology_change_rate"
+        ],
+        "description": "LAND YIELD TECHNOLOGY INITIATED (LYTD#--)",
+        "in72": null,
+        "name": "Land Yield Technology",
+        "stateful_func": "integ_land_yield_technology",
+        "type": "stateful",
+        "value": null
+    },
+    "land_yield_technology_change_rate": {
+        "abbr": "LYTDR",
+        "code": "--",
+        "dependencies": [
+            "policy_year",
+            "time",
+            "land_yield_technology",
+            "land_yield_technology_change_rate_multiplier"
+        ],
+        "description": "Land yield from technology change rate (LYTDR#--)",
+        "in72": null,
+        "name": "land yield technology change rate",
+        "type": "component",
+        "value": null
+    },
+    "land_yield_technology_change_rate_multiplier": {
+        "abbr": "LYCM",
+        "code": "--",
+        "dependencies": [
+            "land_yield_technology_change_rate_multiplier_table",
+            "desired_food_ratio",
+            "food_ratio"
+        ],
+        "description": "Land yield from technology change multiplier (LYCM#--)",
+        "in72": null,
+        "name": "land yield technology change rate multiplier",
+        "type": "component",
+        "value": null
+    },
+    "land_yield_technology_change_rate_multiplier_table": {
+        "abbr": "LYCMT",
+        "code": "--",
+        "dependencies": null,
+        "description": "Table relating the food ratio gap to the change in agricultural technology (LYCMT#--).",
+        "in72": null,
+        "name": "land yield technology change rate multiplier table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                1
+            ],
+            [
+                0,
+                0
+            ]
+        ]
+    },
+    "life_expectancy": {
+        "abbr": "LE",
+        "code": "19",
+        "dependencies": [
+            "lifetime_multiplier_from_health_services",
+            "lifetime_multiplier_from_food",
+            "life_expectancy_normal",
+            "lifetime_multiplier_from_persistent_pollution",
+            "lifetime_multiplier_from_crowding"
+        ],
+        "description": "The average life expectancy (LE#19).",
+        "in72": null,
+        "name": "life expectancy",
+        "type": "component",
+        "value": null
+    },
+    "life_expectancy_index": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "life_expectancy",
+            "life_expectancy_index_lookup",
+            "one_year"
+        ],
+        "description": null,
+        "in72": null,
+        "name": "Life Expectancy Index",
+        "type": "component",
+        "value": null
+    },
+    "life_expectancy_index_lookup": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "Life Expectancy Index LOOKUP",
+        "type": "lookup",
+        "value": [
+            [
+                25,
+                35,
+                45,
+                55,
+                65,
+                75,
+                85
+            ],
+            [
+                0,
+                0.16,
+                0.33,
+                0.5,
+                0.67,
+                0.84,
+                1
+            ]
+        ]
+    },
+    "life_expectancy_normal": {
+        "abbr": "LEN",
+        "code": "19.1",
+        "dependencies": null,
+        "description": "The normal life expectancy with subsistance food, no medical care and no industrialization (LEN#19.1)",
+        "in72": "parameter",
+        "name": "life expectancy normal",
+        "type": "constant",
+        "value": 28
+    },
+    "lifetime_multiplier_from_crowding": {
+        "abbr": "LMC",
+        "code": "28",
+        "dependencies": [
+            "crowding_multiplier_from_industry",
+            "fraction_of_population_urban"
+        ],
+        "description": "LIFETIME MULTIPLIER FROM CROWDING (LMC#28)",
+        "in72": null,
+        "name": "lifetime multiplier from crowding",
+        "type": "component",
+        "value": null
+    },
+    "lifetime_multiplier_from_food": {
+        "abbr": "LMF",
+        "code": "20",
+        "dependencies": [
+            "lifetime_multiplier_from_food_table",
+            "subsistence_food_per_capita",
+            "food_per_capita"
+        ],
+        "description": "The life expectancy multiplier from food (LMF#20)",
+        "in72": "table",
+        "name": "lifetime multiplier from food",
+        "type": "component",
+        "value": null
+    },
+    "lifetime_multiplier_from_food_table": {
+        "abbr": "LMFT",
+        "code": "20.1",
+        "dependencies": null,
+        "description": "The table ralating relative food to the life expectancy multiplier for food (LMFT#20.1)",
+        "in72": null,
+        "name": "lifetime multiplier from food table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            [
+                0,
+                1,
+                1.43,
+                1.5,
+                1.5,
+                1.5
+            ]
+        ]
+    },
+    "lifetime_multiplier_from_health_services": {
+        "abbr": "LMHS",
+        "code": "23",
+        "dependencies": [
+            "time",
+            "lifetime_multiplier_from_health_services_2",
+            "lifetime_multiplier_from_health_services_1"
+        ],
+        "description": "The life expectancy multiplier from health services (LMHS#23).",
+        "in72": "table",
+        "name": "lifetime multiplier from health services",
+        "type": "component",
+        "value": null
+    },
+    "lifetime_multiplier_from_health_services_1": {
+        "abbr": "LMHS1",
+        "code": "24",
+        "dependencies": [
+            "gdp_pc_unit",
+            "effective_health_services_per_capita",
+            "lifetime_multiplier_from_health_services_1_table"
+        ],
+        "description": "The life expectancy multiplier from health services before 1940 (LMHS1#24).",
+        "in72": null,
+        "name": "lifetime multiplier from health services 1",
+        "type": "component",
+        "value": null
+    },
+    "lifetime_multiplier_from_health_services_1_table": {
+        "abbr": "LMHS1T",
+        "code": "24.1",
+        "dependencies": null,
+        "description": "Table relating effective health care to life expectancy (LMHS1T#24.1).",
+        "in72": null,
+        "name": "lifetime multiplier from health services 1 table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                20,
+                40,
+                60,
+                80,
+                100
+            ],
+            [
+                1,
+                1.1,
+                1.4,
+                1.6,
+                1.7,
+                1.8
+            ]
+        ]
+    },
+    "lifetime_multiplier_from_health_services_2": {
+        "abbr": "LMHS2",
+        "code": "25",
+        "dependencies": [
+            "gdp_pc_unit",
+            "effective_health_services_per_capita",
+            "lifetime_multiplier_from_health_services_2_table"
+        ],
+        "description": "The life expectancy multipier from health services value after 1940 (LMHS2#25).",
+        "in72": null,
+        "name": "lifetime multiplier from health services 2",
+        "type": "component",
+        "value": null
+    },
+    "lifetime_multiplier_from_health_services_2_table": {
+        "abbr": "LMHS2T",
+        "code": "25.1",
+        "dependencies": null,
+        "description": "Table relating effective health care to life expectancy (LMHS2T#25.1)",
+        "in72": null,
+        "name": "lifetime multiplier from health services 2 table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                20,
+                40,
+                60,
+                80,
+                100
+            ],
+            [
+                1,
+                1.5,
+                1.9,
+                2,
+                2,
+                2
+            ]
+        ]
+    },
+    "lifetime_multiplier_from_persistent_pollution": {
+        "abbr": "LMP",
+        "code": "29",
+        "dependencies": [
+            "persistent_pollution_index",
+            "lifetime_multiplier_from_persistent_pollution_table"
+        ],
+        "description": "LIFETIME MULTIPLIER FROM PERSISTENT POLLUTION (LMP#29)",
+        "in72": "table",
+        "name": "lifetime multiplier from persistent pollution",
+        "type": "component",
+        "value": null
+    },
+    "lifetime_multiplier_from_persistent_pollution_table": {
+        "abbr": "LMPT",
+        "code": "29.1",
+        "dependencies": null,
+        "description": "Table relating persistent pollution to life expectancy (LMPT#29.1)",
+        "in72": null,
+        "name": "lifetime multiplier from persistent pollution table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80,
+                90,
+                100
+            ],
+            [
+                1,
+                0.99,
+                0.97,
+                0.95,
+                0.9,
+                0.85,
+                0.75,
+                0.65,
+                0.55,
+                0.4,
+                0.2
+            ]
+        ]
+    },
+    "lifetime_perception_delay": {
+        "abbr": "LPD",
+        "code": "37.1",
+        "dependencies": null,
+        "description": "Lifetime perception delay (LPD#37.1)",
+        "in72": "parameter",
+        "name": "lifetime perception delay",
+        "type": "constant",
+        "value": 20
+    },
+    "marginal_land_yield_multiplier_from_capital": {
+        "abbr": "MLYMC",
+        "code": "111",
+        "dependencies": [
+            "agricultural_input_per_hectare",
+            "marginal_land_yield_multiplier_from_capital_table",
+            "unit_agricultural_input"
+        ],
+        "description": "MARGINAL LAND YIELD MULTIPLIER FROM CAPITAL (MLYMC#111).",
+        "in72": "table",
+        "name": "marginal land yield multiplier from capital",
+        "type": "component",
+        "value": null
+    },
+    "marginal_land_yield_multiplier_from_capital_table": {
+        "abbr": "MLYMCT",
+        "code": "111.1",
+        "dependencies": null,
+        "description": "Table relating agricultural inputs to marginal land yield (MLYMCT#111.1).",
+        "in72": null,
+        "name": "marginal land yield multiplier from capital table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                40,
+                80,
+                120,
+                160,
+                200,
+                240,
+                280,
+                320,
+                360,
+                400,
+                440,
+                480,
+                520,
+                560,
+                600
+            ],
+            [
+                0.075,
+                0.03,
+                0.015,
+                0.011,
+                0.009,
+                0.008,
+                0.007,
+                0.006,
+                0.005,
+                0.005,
+                0.005,
+                0.005,
+                0.005,
+                0.005,
+                0.005,
+                0.005
+            ]
+        ]
+    },
+    "marginal_productivity_of_agricultural_inputs": {
+        "abbr": "MPAI",
+        "code": "110",
+        "dependencies": [
+            "land_yield_multiplier_from_capital",
+            "land_yield",
+            "average_life_agricultural_inputs",
+            "marginal_land_yield_multiplier_from_capital"
+        ],
+        "description": "MARGINAL PRODUCTIVITY OF AGRICULTURAL INPUTS (MPAI#110).",
+        "in72": null,
+        "name": "marginal productivity of agricultural inputs",
+        "type": "component",
+        "value": null
+    },
+    "marginal_productivity_of_land_development": {
+        "abbr": "MPLD",
+        "code": "109",
+        "dependencies": [
+            "development_cost_per_hectare",
+            "land_yield",
+            "social_discount"
+        ],
+        "description": "The marginal productivity of land development (MPLD#109)",
+        "in72": null,
+        "name": "marginal productivity of land development",
+        "type": "component",
+        "value": null
+    },
+    "maturation_14_to_15": {
+        "abbr": "MAT1",
+        "code": "5",
+        "dependencies": [
+            "mortality_0_to_14",
+            "population_0_to_14"
+        ],
+        "description": "The fractional rate at which people aged 0-14 mature into the next age cohort (MAT1#5).",
+        "in72": null,
+        "name": "maturation 14 to 15",
+        "type": "component",
+        "value": null
+    },
+    "maturation_44_to_45": {
+        "abbr": "MAT2",
+        "code": "9",
+        "dependencies": [
+            "mortality_15_to_44",
+            "population_15_to_44"
+        ],
+        "description": "The fractional rate at which people aged 15-44 mature into the next age cohort (MAT2#9).",
+        "in72": null,
+        "name": "maturation 44 to 45",
+        "type": "component",
+        "value": null
+    },
+    "maturation_64_to_65": {
+        "abbr": "MAT3",
+        "code": "13",
+        "dependencies": [
+            "population_45_to_64",
+            "mortality_45_to_64"
+        ],
+        "description": "The fractional rate at which people aged 45-64 mature into the next age cohort (MAT3#13).",
+        "in72": null,
+        "name": "maturation 64 to 65",
+        "type": "component",
+        "value": null
+    },
+    "maximum_total_fertility": {
+        "abbr": "MTF",
+        "code": "33",
+        "dependencies": [
+            "maximum_total_fertility_normal",
+            "fecundity_multiplier"
+        ],
+        "description": "MAXIMUM TOTAL FERTILITY (MTF#33).",
+        "in72": null,
+        "name": "maximum total fertility",
+        "type": "component",
+        "value": null
+    },
+    "maximum_total_fertility_normal": {
+        "abbr": "MTFN",
+        "code": "33.1",
+        "dependencies": null,
+        "description": "The normal maximum fertility that would be realized if people had sufficient food and perfect health. (MTFN#33.1)",
+        "in72": "parameter",
+        "name": "maximum total fertility normal",
+        "type": "constant",
+        "value": 12
+    },
+    "mortality_0_to_14": {
+        "abbr": "M1",
+        "code": "4",
+        "dependencies": [
+            "life_expectancy",
+            "mortality_0_to_14_table",
+            "one_year"
+        ],
+        "description": "The fractional mortality rate for people aged 0-14 (M1#4).",
+        "in72": "table",
+        "name": "mortality 0 to 14",
+        "type": "component",
+        "value": null
+    },
+    "mortality_0_to_14_table": {
+        "abbr": "M1T",
+        "code": "4.1",
+        "dependencies": null,
+        "description": "The table relating average life to mortality in the 0 to 14 age group (M1T#4.1).",
+        "in72": null,
+        "name": "mortality 0 to 14 table",
+        "type": "lookup",
+        "value": [
+            [
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80
+            ],
+            [
+                0.0567,
+                0.0366,
+                0.0243,
+                0.0155,
+                0.0082,
+                0.0023,
+                0.001
+            ]
+        ]
+    },
+    "mortality_15_to_44": {
+        "abbr": "M2",
+        "code": "8",
+        "dependencies": [
+            "life_expectancy",
+            "one_year",
+            "mortality_15_to_44_table"
+        ],
+        "description": "The fractional mortality rate for people aged 15-44 (M2#8).",
+        "in72": "table",
+        "name": "mortality 15 to 44",
+        "type": "component",
+        "value": null
+    },
+    "mortality_15_to_44_table": {
+        "abbr": "M2T",
+        "code": "8.1",
+        "dependencies": null,
+        "description": "The table relating average life to mortality in the 15 to 44 age group (M2T#8.1).",
+        "in72": null,
+        "name": "mortality 15 to 44 table",
+        "type": "lookup",
+        "value": [
+            [
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80
+            ],
+            [
+                0.0266,
+                0.0171,
+                0.011,
+                0.0065,
+                0.004,
+                0.0016,
+                0.0008
+            ]
+        ]
+    },
+    "mortality_45_to_64": {
+        "abbr": "M3",
+        "code": "12",
+        "dependencies": [
+            "life_expectancy",
+            "mortality_45_to_64_table",
+            "one_year"
+        ],
+        "description": "The fractional mortality rate for people aged 45-64 (M3#12).",
+        "in72": "table",
+        "name": "mortality 45 to 64",
+        "type": "component",
+        "value": null
+    },
+    "mortality_45_to_64_table": {
+        "abbr": "M2T",
+        "code": "12.1",
+        "dependencies": null,
+        "description": "The table relating average life to mortality in the 45 to 64 age group (M2T#12.1).",
+        "in72": null,
+        "name": "mortality 45 to 64 table",
+        "type": "lookup",
+        "value": [
+            [
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80
+            ],
+            [
+                0.0562,
+                0.0373,
+                0.0252,
+                0.0171,
+                0.0118,
+                0.0083,
+                0.006
+            ]
+        ]
+    },
+    "mortality_65_plus": {
+        "abbr": "M4",
+        "code": "16",
+        "dependencies": [
+            "mortality_65_plus_table",
+            "one_year",
+            "life_expectancy"
+        ],
+        "description": "The fractional mortality rate for people over 65 (M4#16).",
+        "in72": "table",
+        "name": "mortality 65 plus",
+        "type": "component",
+        "value": null
+    },
+    "mortality_65_plus_table": {
+        "abbr": "M4T",
+        "code": "16.1",
+        "dependencies": null,
+        "description": "The table relating average life expectancy to mortality among people over 65 (M4T#16.1)",
+        "in72": null,
+        "name": "mortality 65 plus table",
+        "type": "lookup",
+        "value": [
+            [
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80
+            ],
+            [
+                0.13,
+                0.11,
+                0.09,
+                0.07,
+                0.06,
+                0.05,
+                0.04
+            ]
+        ]
+    },
+    "need_for_fertility_control": {
+        "abbr": "NFC",
+        "code": "44",
+        "dependencies": [
+            "desired_total_fertility",
+            "maximum_total_fertility"
+        ],
+        "description": "NEED FOR FERTILITY CONTROL (NFC#44).",
+        "in72": null,
+        "name": "need for fertility control",
+        "type": "component",
+        "value": null
+    },
+    "nonrenewable_resources": {
+        "abbr": "NR",
+        "code": "129",
+        "dependencies": [
+            "resource_usage_rate",
+            "initial_nonrenewable_resources"
+        ],
+        "description": "Non-renewable resource (NR#129)",
+        "in72": "state",
+        "name": "Nonrenewable Resources",
+        "stateful_func": "integ_nonrenewable_resources",
+        "type": "stateful",
+        "value": null
+    },
+    "one_year": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "one year",
+        "type": "constant",
+        "value": 1
+    },
+    "per_capita_resource_use_mult_table": {
+        "abbr": "PCRUMT",
+        "code": "132.1",
+        "dependencies": null,
+        "description": "Table relating industrial output to resource usage per capita (PCRUMT#132.1).",
+        "in72": null,
+        "name": "per capita resource use mult table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                200,
+                400,
+                600,
+                800,
+                1000,
+                1200,
+                1400,
+                1600
+            ],
+            [
+                0,
+                0.85,
+                2.6,
+                3.4,
+                3.8,
+                4.1,
+                4.4,
+                4.7,
+                5
+            ]
+        ]
+    },
+    "per_capita_resource_use_multiplier": {
+        "abbr": "PCRUM",
+        "code": "132",
+        "dependencies": [
+            "industrial_output_per_capita",
+            "gdp_pc_unit",
+            "per_capita_resource_use_mult_table"
+        ],
+        "description": "Per capita resource usage multiplier (PCRUM#132).",
+        "in72": "table",
+        "name": "per capita resource use multiplier",
+        "type": "component",
+        "value": null
+    },
+    "perceived_food_ratio": {
+        "abbr": "PFR",
+        "code": "128",
+        "dependencies": [
+            "food_shortage_perception_delay",
+            "food_ratio"
+        ],
+        "description": "PERCEIVED FOOD RATIO (PFR#128).",
+        "in72": "state",
+        "name": "Perceived Food Ratio",
+        "stateful_func": "smooth_food_ratio_food_shortage_perception_delay_food_ratio_1",
+        "type": "stateful",
+        "value": null
+    },
+    "perceived_life_expectancy": {
+        "abbr": "PLE",
+        "code": "37",
+        "dependencies": [
+            "life_expectancy",
+            "lifetime_perception_delay"
+        ],
+        "description": "Perceived life expectancy (PLE#37)",
+        "in72": "state",
+        "name": "perceived life expectancy",
+        "stateful_func": "smooth_life_expectancy_lifetime_perception_delay_life_expectancy_3",
+        "type": "stateful",
+        "value": null
+    },
+    "persistent_pollution": {
+        "abbr": "PPOL",
+        "code": "142",
+        "dependencies": [
+            "persistent_pollution_appearance_rate",
+            "persistent_pollution_assimilation_rate",
+            "initial_persistent_pollution"
+        ],
+        "description": "Persistent pollution (PPOL#142).",
+        "in72": "state",
+        "name": "Persistent Pollution",
+        "stateful_func": "integ_persistent_pollution",
+        "type": "stateful",
+        "value": null
+    },
+    "persistent_pollution_appearance_rate": {
+        "abbr": "PPAPR",
+        "code": "141",
+        "dependencies": [
+            "persistent_pollution_generation_rate",
+            "persistent_pollution_transmission_delay"
+        ],
+        "description": "Persistent pollution appearance rate (PPAPR#141)",
+        "in72": null,
+        "name": "persistent pollution appearance rate",
+        "stateful_func": "delay_persistent_pollution_generation_rate_persistent_pollution_transmission_delay_persistent_pollution_generation_rate_3",
+        "type": "stateful",
+        "value": null
+    },
+    "persistent_pollution_assimilation_rate": {
+        "abbr": "PPASR",
+        "code": "144",
+        "dependencies": [
+            "assimilation_half_life",
+            "persistent_pollution"
+        ],
+        "description": "PERSISTENT POLLUTION ASSIMILATION RATE (PPASR#144).",
+        "in72": null,
+        "name": "persistent pollution assimilation rate",
+        "type": "component",
+        "value": null
+    },
+    "persistent_pollution_generation_agriculture": {
+        "abbr": "PPGAO",
+        "code": "140",
+        "dependencies": [
+            "agricultural_input_per_hectare",
+            "fraction_of_agricultural_inputs_from_persistent_materials",
+            "arable_land",
+            "agricultural_material_toxicity_index"
+        ],
+        "description": "Persistent pollution generated by agriculture (PPGAO#140)",
+        "in72": null,
+        "name": "persistent pollution generation agriculture",
+        "type": "component",
+        "value": null
+    },
+    "persistent_pollution_generation_factor": {
+        "abbr": "PPGF",
+        "code": "138",
+        "dependencies": [
+            "policy_year",
+            "time",
+            "persistent_pollution_generation_factor_1",
+            "persistent_pollution_generation_factor_2"
+        ],
+        "description": "PERSISTENT POLLUTION GENERATED FACTOR (PPGF#138).",
+        "in72": "parameter",
+        "name": "persistent pollution generation factor",
+        "type": "component",
+        "value": null
+    },
+    "persistent_pollution_generation_factor_1": {
+        "abbr": "PPGF1",
+        "code": "138.1",
+        "dependencies": null,
+        "description": "Persistent pollution generation factor before policy time (PPGF1#138.1).",
+        "in72": null,
+        "name": "persistent pollution generation factor 1",
+        "type": "constant",
+        "value": 1
+    },
+    "persistent_pollution_generation_factor_2": {
+        "abbr": "PPGF2",
+        "code": "138.2",
+        "dependencies": [
+            "technology_development_delay",
+            "persistent_pollution_technology"
+        ],
+        "description": "Persistent pollution generation factor after policy time (PPGF2#138.2).",
+        "in72": null,
+        "name": "persistent pollution generation factor 2",
+        "stateful_func": "smooth_persistent_pollution_technology_technology_development_delay_persistent_pollution_technology_3",
+        "type": "stateful",
+        "value": null
+    },
+    "persistent_pollution_generation_industry": {
+        "abbr": "PPGIO",
+        "code": "139",
+        "dependencies": [
+            "fraction_of_resources_from_persistent_materials",
+            "population",
+            "per_capita_resource_use_multiplier",
+            "industrial_material_toxicity_index",
+            "industrial_material_emissions_factor"
+        ],
+        "description": "Persistent pollution generated by industrial output. (PPGIO#139)",
+        "in72": null,
+        "name": "persistent pollution generation industry",
+        "type": "component",
+        "value": null
+    },
+    "persistent_pollution_generation_rate": {
+        "abbr": "PPGR",
+        "code": "137",
+        "dependencies": [
+            "persistent_pollution_generation_agriculture",
+            "persistent_pollution_generation_factor",
+            "persistent_pollution_generation_industry"
+        ],
+        "description": "PERSISTENT POLLUTION GENERATION RATE (PPGR#137).",
+        "in72": null,
+        "name": "persistent pollution generation rate",
+        "type": "component",
+        "value": null
+    },
+    "persistent_pollution_in_1970": {
+        "abbr": "PPOL70",
+        "code": "143.1",
+        "dependencies": null,
+        "description": "PERSISTENT POLLUTION IN 1970 (PPOL70#143.1).",
+        "in72": "parameter",
+        "name": "persistent pollution in 1970",
+        "type": "constant",
+        "value": 136000000.0
+    },
+    "persistent_pollution_index": {
+        "abbr": "PPOLX",
+        "code": "143",
+        "dependencies": [
+            "persistent_pollution_in_1970",
+            "persistent_pollution"
+        ],
+        "description": "Persistent pollution index relative to 1970 (PPOLX#143).",
+        "in72": null,
+        "name": "persistent pollution index",
+        "type": "component",
+        "value": null
+    },
+    "persistent_pollution_intensity_industry": {
+        "abbr": "PLINID",
+        "code": "--",
+        "dependencies": [
+            "persistent_pollution_generation_factor",
+            "industrial_output",
+            "persistent_pollution_generation_industry"
+        ],
+        "description": "pollution intensity indicator (PLINID#--).",
+        "in72": null,
+        "name": "persistent pollution intensity industry",
+        "type": "component",
+        "value": null
+    },
+    "persistent_pollution_technology": {
+        "abbr": "PTD",
+        "code": "--",
+        "dependencies": [
+            "persistent_pollution_technology_change_rate"
+        ],
+        "description": "Pollution control technology initiated (PTD#--)",
+        "in72": null,
+        "name": "Persistent Pollution Technology",
+        "stateful_func": "integ_persistent_pollution_technology",
+        "type": "stateful",
+        "value": null
+    },
+    "persistent_pollution_technology_change_mult_table": {
+        "abbr": "POLGFMT",
+        "code": "--",
+        "dependencies": null,
+        "description": "Table relating persisten pollution to changes due to technology (POLGFMT#--).",
+        "in72": null,
+        "name": "persistent pollution technology change mult table",
+        "type": "lookup",
+        "value": [
+            [
+                0
+            ],
+            [
+                0,
+                0
+            ]
+        ]
+    },
+    "persistent_pollution_technology_change_multiplier": {
+        "abbr": "POLGFM",
+        "code": "--",
+        "dependencies": [
+            "desired_persistent_pollution_index",
+            "persistent_pollution_index",
+            "persistent_pollution_technology_change_mult_table"
+        ],
+        "description": "POLLUTION CONTROL TECHNOLOGY CHANGE MULTIPLIER (POLGFM#--).",
+        "in72": null,
+        "name": "persistent pollution technology change multiplier",
+        "type": "component",
+        "value": null
+    },
+    "persistent_pollution_technology_change_rate": {
+        "abbr": "PTDR",
+        "code": "--",
+        "dependencies": [
+            "policy_year",
+            "time",
+            "persistent_pollution_technology",
+            "persistent_pollution_technology_change_multiplier"
+        ],
+        "description": "pollution control technology change rate (PTDR#--)",
+        "in72": null,
+        "name": "persistent pollution technology change rate",
+        "type": "component",
+        "value": null
+    },
+    "persistent_pollution_transmission_delay": {
+        "abbr": "PPTD",
+        "code": "141.1",
+        "dependencies": null,
+        "description": "Persistent pollution transmission delay (PPTD#141.1).",
+        "in72": "parameter",
+        "name": "persistent pollution transmission delay",
+        "type": "constant",
+        "value": 20
+    },
+    "policy_year": {
+        "abbr": "PYEAR",
+        "code": "150.1",
+        "dependencies": null,
+        "description": "The time at which policies are implemented (PYEAR#150.1).",
+        "in72": null,
+        "name": "POLICY YEAR",
+        "type": "constant",
+        "value": 1995
+    },
+    "population": {
+        "abbr": "POP",
+        "code": "1",
+        "dependencies": [
+            "population_65_plus",
+            "population_15_to_44",
+            "population_0_to_14",
+            "population_45_to_64"
+        ],
+        "description": "Total world population in all age groups (POP#1).",
+        "in72": null,
+        "name": "population",
+        "type": "component",
+        "value": null
+    },
+    "population_0_to_14": {
+        "abbr": "P1",
+        "code": "2",
+        "dependencies": [
+            "maturation_14_to_15",
+            "births",
+            "initial_population_0_to_14",
+            "deaths_0_to_14"
+        ],
+        "description": "World population, AGES 0-14 (P1#2)",
+        "in72": "state",
+        "name": "Population 0 To 14",
+        "stateful_func": "integ_population_0_to_14",
+        "type": "stateful",
+        "value": null
+    },
+    "population_15_to_44": {
+        "abbr": "P2",
+        "code": "6",
+        "dependencies": [
+            "initial_population_15_to_44",
+            "maturation_14_to_15",
+            "maturation_44_to_45",
+            "deaths_15_to_44"
+        ],
+        "description": "World population, AGES 15-44 (P2#6)",
+        "in72": "state",
+        "name": "Population 15 To 44",
+        "stateful_func": "integ_population_15_to_44",
+        "type": "stateful",
+        "value": null
+    },
+    "population_45_to_64": {
+        "abbr": "P3",
+        "code": "10",
+        "dependencies": [
+            "maturation_44_to_45",
+            "maturation_64_to_65",
+            "initial_population_54_to_64",
+            "deaths_45_to_64"
+        ],
+        "description": "The world population aged 0 to 14 (P3#10).",
+        "in72": "state",
+        "name": "Population 45 To 64",
+        "stateful_func": "integ_population_45_to_64",
+        "type": "stateful",
+        "value": null
+    },
+    "population_65_plus": {
+        "abbr": "P4",
+        "code": "14",
+        "dependencies": [
+            "maturation_64_to_65",
+            "initial_population_65_plus",
+            "deaths_65_plus"
+        ],
+        "description": "The world population aged 65 and over (P4#14).",
+        "in72": "state",
+        "name": "Population 65 Plus",
+        "stateful_func": "integ_population_65_plus",
+        "type": "stateful",
+        "value": null
+    },
+    "population_equilibrium_time": {
+        "abbr": "PET",
+        "code": "30.2",
+        "dependencies": null,
+        "description": "The time at which, as a model test, the population is forced to remain constant. (PET#30.2)",
+        "in72": null,
+        "name": "population equilibrium time",
+        "type": "constant",
+        "value": 4000
+    },
+    "potential_jobs_agricultural_sector": {
+        "abbr": "PJAS",
+        "code": "78",
+        "dependencies": [
+            "jobs_per_hectare",
+            "arable_land"
+        ],
+        "description": "Potential jobs in the agricultural sector (PJAS#78).",
+        "in72": null,
+        "name": "potential jobs agricultural sector",
+        "type": "component",
+        "value": null
+    },
+    "potential_jobs_industrial_sector": {
+        "abbr": "PKIS",
+        "code": "74",
+        "dependencies": [
+            "industrial_capital",
+            "jobs_per_industrial_capital_unit"
+        ],
+        "description": "POTENTIAL JOBS IN INDUSTRIAL SECTOR (PKIS#74).",
+        "in72": null,
+        "name": "potential jobs industrial sector",
+        "type": "component",
+        "value": null
+    },
+    "potential_jobs_service_sector": {
+        "abbr": "PJSS",
+        "code": "76",
+        "dependencies": [
+            "service_capital",
+            "jobs_per_service_capital_unit"
+        ],
+        "description": "Potential jobs in the service sector (PJSS#76).",
+        "in72": null,
+        "name": "potential jobs service sector",
+        "type": "component",
+        "value": null
+    },
+    "potentially_arable_land": {
+        "abbr": "PAL",
+        "code": "86",
+        "dependencies": [
+            "land_development_rate",
+            "initial_potentially_arable_land"
+        ],
+        "description": "POTENTIALLY ARABLE LAND (PAL#86).",
+        "in72": "state",
+        "name": "Potentially Arable Land",
+        "stateful_func": "integ_potentially_arable_land",
+        "type": "stateful",
+        "value": null
+    },
+    "potentially_arable_land_total": {
+        "abbr": "PALT",
+        "code": "84.1",
+        "dependencies": null,
+        "description": "POTENTIALLY ARABLE LAND TOTAL (PALT#84.1).",
+        "in72": "parameter",
+        "name": "potentially arable land total",
+        "type": "constant",
+        "value": 3200000000.0
+    },
+    "price_of_food": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": "The price of food used as a basis for comparing agricultural and industrial output. (--).",
+        "in72": null,
+        "name": "PRICE OF FOOD",
+        "type": "constant",
+        "value": 0.22
+    },
+    "processing_loss": {
+        "abbr": "PL",
+        "code": "87.2",
+        "dependencies": null,
+        "description": "PROCESSING LOSS (PL#87.2)",
+        "in72": "parameter",
+        "name": "processing loss",
+        "type": "constant",
+        "value": 0.1
+    },
+    "ref_hi_gdp": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "Ref Hi GDP",
+        "type": "constant",
+        "value": 9508
+    },
+    "ref_lo_gdp": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "Ref Lo GDP",
+        "type": "constant",
+        "value": 24
+    },
+    "reproductive_lifetime": {
+        "abbr": "RLT",
+        "code": "30.1",
+        "dependencies": null,
+        "description": "The number of years people can reproduce (RLT#30.1)",
+        "in72": "parameter",
+        "name": "reproductive lifetime",
+        "type": "constant",
+        "value": 30
+    },
+    "resource_conservation_technology": {
+        "abbr": "NRTD",
+        "code": "--",
+        "dependencies": [
+            "resource_technology_change_rate"
+        ],
+        "description": "Non-renewable resource technology (NRTD#--)",
+        "in72": null,
+        "name": "Resource Conservation Technology",
+        "stateful_func": "integ_resource_conservation_technology",
+        "type": "stateful",
+        "value": null
+    },
+    "resource_technology_change_mult_table": {
+        "abbr": "NRCMT",
+        "code": "--",
+        "dependencies": null,
+        "description": "Table relating resource use to technological change. (NRCMT#--)",
+        "in72": null,
+        "name": "resource technology change mult table",
+        "type": "lookup",
+        "value": [
+            [
+                0
+            ],
+            [
+                0,
+                0
+            ]
+        ]
+    },
+    "resource_technology_change_rate": {
+        "abbr": "NRATE-",
+        "code": "",
+        "dependencies": [
+            "policy_year",
+            "resource_technology_change_rate_multiplier",
+            "time",
+            "resource_conservation_technology"
+        ],
+        "description": "RESOURCE TECHNOLOGY IMPROVEMENT RATE (NRATE-##).",
+        "in72": null,
+        "name": "resource technology change rate",
+        "type": "component",
+        "value": null
+    },
+    "resource_technology_change_rate_multiplier": {
+        "abbr": "NRCM",
+        "code": "--",
+        "dependencies": [
+            "resource_technology_change_mult_table",
+            "resource_usage_rate",
+            "desired_resource_use_rate"
+        ],
+        "description": "Resource technology change multiplier (NRCM#--)",
+        "in72": null,
+        "name": "resource technology change rate multiplier",
+        "type": "component",
+        "value": null
+    },
+    "resource_usage_rate": {
+        "abbr": "NRUR",
+        "code": "130",
+        "dependencies": [
+            "per_capita_resource_use_multiplier",
+            "resource_use_factor",
+            "population"
+        ],
+        "description": "Non-renewable resource use rate (NRUR#130).",
+        "in72": null,
+        "name": "resource usage rate",
+        "type": "component",
+        "value": null
+    },
+    "resource_use_fact_2": {
+        "abbr": "NRUF2",
+        "code": "131.2",
+        "dependencies": [
+            "resource_conservation_technology",
+            "technology_development_delay"
+        ],
+        "description": "The nonrenewable resource usage factor after the policy year (NRUF2#131.2).",
+        "in72": null,
+        "name": "resource use fact 2",
+        "stateful_func": "smooth_resource_conservation_technology_technology_development_delay_resource_conservation_technology_3",
+        "type": "stateful",
+        "value": null
+    },
+    "resource_use_factor": {
+        "abbr": "NRUF",
+        "code": "131",
+        "dependencies": [
+            "policy_year",
+            "resource_use_fact_2",
+            "time",
+            "resource_use_factor_1"
+        ],
+        "description": "NONRENEWABLE RESOURCE USAGE FACTOR (NRUF#131).",
+        "in72": "parameter",
+        "name": "resource use factor",
+        "type": "component",
+        "value": null
+    },
+    "resource_use_factor_1": {
+        "abbr": "NRUF1",
+        "code": "131.1",
+        "dependencies": null,
+        "description": "The nonrenewable resource usage factor before the policy year (NRUF1#131.1).",
+        "in72": null,
+        "name": "resource use factor 1",
+        "type": "constant",
+        "value": 1
+    },
+    "resource_use_intensity": {
+        "abbr": "RESINT",
+        "code": "--",
+        "dependencies": [
+            "resource_usage_rate",
+            "industrial_output"
+        ],
+        "description": "ADAPTIVE TECHNOLOGICAL CONTROL CARDS nonrenewable resource usage intensity (RESINT#--)",
+        "in72": null,
+        "name": "resource use intensity",
+        "type": "component",
+        "value": null
+    },
+    "saveper": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "time_step"
+        ],
+        "description": "The frequency with which results are saved.",
+        "in72": null,
+        "name": "SAVEPER",
+        "type": "component",
+        "value": null
+    },
+    "service_capital": {
+        "abbr": "SC",
+        "code": "67",
+        "dependencies": [
+            "service_capital_investment",
+            "service_capital_depreciation",
+            "initial_service_capital"
+        ],
+        "description": "Service capital (SC#67).",
+        "in72": "state",
+        "name": "Service Capital",
+        "stateful_func": "integ_service_capital",
+        "type": "stateful",
+        "value": null
+    },
+    "service_capital_depreciation": {
+        "abbr": "SCDR",
+        "code": "68",
+        "dependencies": [
+            "service_capital",
+            "average_life_of_service_capital"
+        ],
+        "description": "SERVICE CAPITAL DEPRECIATION RATE (SCDR#68).",
+        "in72": null,
+        "name": "service capital depreciation",
+        "type": "component",
+        "value": null
+    },
+    "service_capital_investment": {
+        "abbr": "SCIR",
+        "code": "66",
+        "dependencies": [
+            "industrial_output",
+            "fraction_of_industrial_output_allocated_to_services"
+        ],
+        "description": "SERVICE CAPITAL INVESTMENT RATE (SCIR#66).",
+        "in72": null,
+        "name": "service capital investment",
+        "type": "component",
+        "value": null
+    },
+    "service_capital_output_ratio": {
+        "abbr": "SCOR",
+        "code": "72",
+        "dependencies": [
+            "policy_year",
+            "time",
+            "service_capital_output_ratio_1",
+            "service_capital_output_ratio_2"
+        ],
+        "description": "Service capital output ratio (SCOR#72).",
+        "in72": "parameter",
+        "name": "service capital output ratio",
+        "type": "component",
+        "value": null
+    },
+    "service_capital_output_ratio_1": {
+        "abbr": "SCOR1",
+        "code": "72.1",
+        "dependencies": null,
+        "description": "Service capital output ratio before policy year (SCOR1#72.1).",
+        "in72": null,
+        "name": "service capital output ratio 1",
+        "type": "constant",
+        "value": 1
+    },
+    "service_capital_output_ratio_2": {
+        "abbr": "SCOR2",
+        "code": "72.2",
+        "dependencies": null,
+        "description": "Service capital output ratio after policy year (SCOR2#72.2).",
+        "in72": null,
+        "name": "service capital output ratio 2",
+        "type": "constant",
+        "value": 1
+    },
+    "service_output": {
+        "abbr": "SO",
+        "code": "70",
+        "dependencies": [
+            "service_capital",
+            "service_capital_output_ratio",
+            "capacity_utilization_fraction"
+        ],
+        "description": "Service output (SO#70).",
+        "in72": null,
+        "name": "service output",
+        "type": "component",
+        "value": null
+    },
+    "service_output_per_capita": {
+        "abbr": "SOPC",
+        "code": "71",
+        "dependencies": [
+            "population",
+            "service_output"
+        ],
+        "description": "SERVICE OUTPUT PER CAPITA (SOPC#71).",
+        "in72": null,
+        "name": "service output per capita",
+        "type": "component",
+        "value": null
+    },
+    "social_adjustment_delay": {
+        "abbr": "SAD",
+        "code": "40.1",
+        "dependencies": null,
+        "description": "SOCIAL ADJUSTMENT DELAY (SAD#40.1).",
+        "in72": "parameter",
+        "name": "social adjustment delay",
+        "type": "constant",
+        "value": 20
+    },
+    "social_discount": {
+        "abbr": "SD",
+        "code": "109.1",
+        "dependencies": null,
+        "description": "SOCIAL DISCOUNT (SD#109.1)",
+        "in72": "parameter",
+        "name": "social discount",
+        "type": "constant",
+        "value": 0.07
+    },
+    "social_family_size_normal": {
+        "abbr": "SFN",
+        "code": "39",
+        "dependencies": [
+            "delayed_industrial_output_per_capita",
+            "social_family_size_normal_table",
+            "gdp_pc_unit"
+        ],
+        "description": "SOCIAL FAMILY SIZE NORM (SFN#39).",
+        "in72": "table",
+        "name": "social family size normal",
+        "type": "component",
+        "value": null
+    },
+    "social_family_size_normal_table": {
+        "abbr": "SFNT",
+        "code": "39.1",
+        "dependencies": null,
+        "description": "Table relating material well being to family size (SFNT#39.1)",
+        "in72": null,
+        "name": "social family size normal table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                200,
+                400,
+                600,
+                800
+            ],
+            [
+                1.25,
+                0.94,
+                0.715,
+                0.59,
+                0.5
+            ]
+        ]
+    },
+    "subsistence_food_per_capita": {
+        "abbr": "SFPC",
+        "code": "127.1",
+        "dependencies": null,
+        "description": "Subsistence food per capita (SFPC#127.1).",
+        "in72": "parameter",
+        "name": "subsistence food per capita",
+        "type": "constant",
+        "value": 230
+    },
+    "technology_development_delay": {
+        "abbr": "TDD",
+        "code": "--",
+        "dependencies": null,
+        "description": "The technology development delay (TDD#--)",
+        "in72": null,
+        "name": "technology development delay",
+        "type": "constant",
+        "value": 20
+    },
+    "thousand": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": "Units converted for /1000 rates (--).",
+        "in72": null,
+        "name": "THOUSAND",
+        "type": "constant",
+        "value": 1000
+    },
+    "time": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "TIME",
+        "type": "other"
+    },
+    "time_step": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": "The time step for computing the model",
+        "in72": null,
+        "name": "TIME STEP",
+        "type": "constant",
+        "value": 0.5
+    },
+    "total_agricultural_investment": {
+        "abbr": "TAI",
+        "code": "92",
+        "dependencies": [
+            "fraction_of_industrial_output_allocated_to_agriculture",
+            "industrial_output"
+        ],
+        "description": "TOTAL AGRICULTURAL INVESTMENT (TAI#92)",
+        "in72": null,
+        "name": "total agricultural investment",
+        "type": "component",
+        "value": null
+    },
+    "total_fertility": {
+        "abbr": "TF",
+        "code": "32",
+        "dependencies": [
+            "desired_total_fertility",
+            "fertility_control_effectiveness",
+            "maximum_total_fertility"
+        ],
+        "description": "TOTAL FERTILITY (TF#32).",
+        "in72": null,
+        "name": "total fertility",
+        "type": "component",
+        "value": null
+    },
+    "total_land": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "Total Land",
+        "type": "constant",
+        "value": 1.91
+    },
+    "unit_agricultural_input": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "unit agricultural input",
+        "type": "constant",
+        "value": 1
+    },
+    "unit_population": {
+        "abbr": null,
+        "code": null,
+        "dependencies": null,
+        "description": null,
+        "in72": null,
+        "name": "unit population",
+        "type": "constant",
+        "value": 1
+    },
+    "urban_and_industrial_land": {
+        "abbr": "UIL",
+        "code": "120",
+        "dependencies": [
+            "land_removal_for_urban_and_industrial_use",
+            "initial_urban_and_industrial_land"
+        ],
+        "description": "URBAN-INDUSTRIAL LAND (UIL#120).",
+        "in72": "state",
+        "name": "Urban and Industrial Land",
+        "stateful_func": "integ_urban_and_industrial_land",
+        "type": "stateful",
+        "value": null
+    },
+    "urban_and_industrial_land_development_time": {
+        "abbr": "UILDT",
+        "code": "119.1",
+        "dependencies": null,
+        "description": "Urban industrial land development time (UILDT#119.1).",
+        "in72": "parameter",
+        "name": "urban and industrial land development time",
+        "type": "constant",
+        "value": 10
+    },
+    "urban_and_industrial_land_required": {
+        "abbr": "UILR",
+        "code": "118",
+        "dependencies": [
+            "urban_and_industrial_land_required_per_capita",
+            "population"
+        ],
+        "description": "Urban industrial land required (UILR#118).",
+        "in72": null,
+        "name": "urban and industrial land required",
+        "type": "component",
+        "value": null
+    },
+    "urban_and_industrial_land_required_per_capita": {
+        "abbr": "UILPC",
+        "code": "117",
+        "dependencies": [
+            "industrial_output_per_capita",
+            "gdp_pc_unit",
+            "urban_and_industrial_land_required_per_capita_table"
+        ],
+        "description": "Urban industrial land per capita (UILPC#117).",
+        "in72": "table",
+        "name": "urban and industrial land required per capita",
+        "type": "component",
+        "value": null
+    },
+    "urban_and_industrial_land_required_per_capita_table": {
+        "abbr": "UILPCT",
+        "code": "117.1",
+        "dependencies": null,
+        "description": "Table relating industrial output to urban industrial land (UILPCT#117.1)",
+        "in72": null,
+        "name": "urban and industrial land required per capita table",
+        "type": "lookup",
+        "value": [
+            [
+                0,
+                200,
+                400,
+                600,
+                800,
+                1000,
+                1200,
+                1400,
+                1600
+            ],
+            [
+                0.005,
+                0.008,
+                0.015,
+                0.025,
+                0.04,
+                0.055,
+                0.07,
+                0.08,
+                0.09
+            ]
+        ]
+    },
+    "urban_land_gha": {
+        "abbr": null,
+        "code": null,
+        "dependencies": [
+            "urban_and_industrial_land",
+            "ha_per_gha"
+        ],
+        "description": null,
+        "in72": null,
+        "name": "\"Urban Land (GHA)\"",
+        "type": "component",
+        "value": null
+    },
+    "zero_population_growth_time": {
+        "abbr": "ZPGT",
+        "code": "38.1",
+        "dependencies": null,
+        "description": "TIME WHEN DESIRED FAMILY SIZE EQUALS 2 CHILDREN (ZPGT#38.1)",
+        "in72": null,
+        "name": "zero population growth time",
+        "type": "constant",
+        "value": 4000
+    }
+}
