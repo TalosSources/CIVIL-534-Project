@@ -8,6 +8,21 @@ import json
 import time
 
 from pyworld3.pyworld3 import World3
+from pyworld3.pyworld3.utils import plot_world_variables
+from matplotlib import pyplot as plt
+
+
+def plot_world_3(world3):
+    plot_world_variables(
+        world3.time,
+        [world3.nrfr, world3.iopc, world3.fpc, world3.pop, world3.ppolx],
+        ["NRFR", "IOPC", "FPC", "POP", "PPOLX"],
+        [[0, 1], [0, 1e3], [0, 1e3], [0, 16e9], [0, 32]],
+        figsize=(7, 5),
+        grid=1,
+        title="Best explored policy",
+    )
+    plt.show()
 
 
 def sigmoid(x):
@@ -23,9 +38,9 @@ def evaluation_function(world3):
     ppolx = np.mean(world3.ppolx)  # persistent pollution
     fpc = np.mean(world3.fpc)  # food per capita
 
-    # print(
-    #     f"obtained population={population}, nrfr_final={nrfr_final}, iopc={iopc}, ppolx={ppolx}, fpc={fpc}"
-    # )
+    print(
+        f"obtained population={population}, nrfr_final={nrfr_final}, iopc={iopc}, ppolx={ppolx}, fpc={fpc}"
+    )
 
     ## We define sustainable development according to those principles:
     # Population: stable, and above a minimum threshold
@@ -79,29 +94,35 @@ def grid_search():
 
     parameters_ranges = [
         # np.arange(1970, 2050, 20),  # pyear, when we implement the 1-2 policies
-        np.array([1975]),  # only a single year: shorten computations
+        # np.array([1975]),  # only a single year: shorten computations
+        np.array([1975]),  # BEST POLICY
         #
         # np.arange(2, 16, 4),  # imti
-        np.array([2, 6]),  # imti 2nd range
+        # np.array([2, 6]),  # imti 2nd range
         # np.arange(10, 11),  # imti default
+        np.array([2]),  # BEST POLICY
         #
         # np.arange(100, 600, 150),  # iopcd
-        np.arange(60, 200, 40),  # iopcd 2nd range
+        # np.arange(60, 200, 40),  # iopcd 2nd range
         # np.arange(400, 401),  # iopdc default
+        np.array([100]),  # BEST POLICY
         #
         # np.array([1, 2, 4, 8]),  # alai2
-        np.array([1, 2]),  # alai2 second range
+        # np.array([1, 2]),  # alai2 second range
         # np.array([2]),  # alai2 default
+        np.array([1]),  # BEST POLICY
         #
         # np.array([0.5, 1.0, 2.0, 4.0, 8.0]),  # fsafc scaling factor
         # np.array([4.0, 8.0, 16.0, 64.0]),  # fsafc scaling factor second range
-        np.array([64.0]),  # fsafc scaling factor second range
+        # np.array([64.0]),  # fsafc scaling factor second range
         # np.array([1.0]),  # fsafc scaling factor default
+        np.array([8]),  # BEST POLICY
         #
         # np.array([0.25, 0.5, 1.0, 2.0, 4.0]),  # hsapc scaling factor
         # np.array([0.1, 0.20, 0.25, 0.5]),  # hsapc scaling factor second range
-        np.array([0.1]),  # hsapc scaling factor second range
+        # np.array([0.1]),  # hsapc scaling factor second range
         # np.array([1.0]),  # hsapc scaling factor default
+        np.array([0.25]),  # BEST POLICY
     ]
 
     print(f"searching ranges: {parameters_ranges}")
@@ -152,6 +173,8 @@ def grid_search():
 
         # run the simulation
         world3.run_world3()
+
+        plot_world_3(world3)
 
         # evaluate the run according to our notion of sustainable development
         eval_metric = evaluation_function(world3)
