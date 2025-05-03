@@ -11,6 +11,3 @@ for name, val in w3_vars.items():
     G.add_node(name, var_type=val["type"])
     if val["dependencies"] is not None:
         G.add_edges_from([(dep, name) for dep in val["dependencies"]])
-
-print(f"G: {G}")
-nx.draw(G)
